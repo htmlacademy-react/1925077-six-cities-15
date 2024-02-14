@@ -1,7 +1,7 @@
 # Личный проект «Шесть городов»
 
 * Студент: [Валера Галеев](https://up.htmlacademy.ru/react/15/user/1925077).
-* Наставник: `Неизвестно`.
+* Наставник: [Arthur Litovko](https://htmlacademy.ru/profile/id6927).
 
 ---
 
