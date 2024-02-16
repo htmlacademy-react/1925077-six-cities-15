@@ -1,5 +1,7 @@
+import PageMain from '../../pages/page-main/page-main';
+
 function App() {
-  return <p>App</p>;
+  return <PageMain/>;
 }
 
 export default App;
