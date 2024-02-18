@@ -168,4 +168,4 @@ function PageFavorites() {
   );
 }
 
-export default PageFavorites;
+export {PageFavorites};

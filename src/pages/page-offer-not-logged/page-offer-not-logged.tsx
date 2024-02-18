@@ -284,4 +284,4 @@ function PageOfferNotLogged() {
   );
 }
 
-export default PageOfferNotLogged;
+export {PageOfferNotLogged};

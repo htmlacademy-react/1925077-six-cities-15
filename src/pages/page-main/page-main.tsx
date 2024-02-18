@@ -1,8 +1,5 @@
 import PlaceCard from '../../components/place-card/place-card';
-
-type PageMainProps = {
-  placesCount: number;
-}
+import {PageMainProps} from '../../types/common-types';
 
 function PageMain({placesCount}: PageMainProps) {
   return (
@@ -112,4 +109,4 @@ function PageMain({placesCount}: PageMainProps) {
   );
 }
 
-export default PageMain;
+export {PageMain};

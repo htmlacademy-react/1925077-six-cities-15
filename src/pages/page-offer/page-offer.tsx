@@ -336,4 +336,4 @@ function PageOffer() {
   );
 }
 
-export default PageOffer;
+export {PageOffer};

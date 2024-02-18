@@ -42,4 +42,4 @@ function PageLogin() {
   );
 }
 
-export default PageLogin;
+export {PageLogin};

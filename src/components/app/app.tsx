@@ -1,11 +1,8 @@
-import PageMain from '../../pages/page-main/page-main';
+import {PageMain} from '../../pages/page-main/page-main';
+import {pageMain} from '../../mock/common-mock';
 
-type AppProps = {
-  placesCount: number;
+function App() {
+  return <PageMain placesCount={pageMain.PlacesCount} />;
 }
 
-function App({placesCount}: AppProps) {
-  return <PageMain placesCount={placesCount}/>;
-}
-
-export default App;
+export {App};

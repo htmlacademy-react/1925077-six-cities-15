@@ -37,4 +37,4 @@ function PlaceCard() {
   );
 }
 
-export default PlaceCard;
+export {PlaceCard};

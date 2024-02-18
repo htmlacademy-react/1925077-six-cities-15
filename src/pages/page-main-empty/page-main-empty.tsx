@@ -84,4 +84,4 @@ function PageMainEmpty() {
   );
 }
 
-export default PageMainEmpty;
+export {PageMainEmpty};
