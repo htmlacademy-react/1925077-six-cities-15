@@ -1,5 +1,5 @@
-const pageMain = {
-  PlacesCount: 312,
-};
+import {PageMainProps} from '../types/common-types';
 
-export {pageMain};
+export const PAGEMAIN: PageMainProps = {
+  placesCount: 312,
+};

@@ -1,4 +1,4 @@
-import PlaceCard from '../../components/place-card/place-card';
+import {PlaceCard} from '../../components/place-card/place-card';
 import {PageMainProps} from '../../types/common-types';
 
 function PageMain({placesCount}: PageMainProps) {
