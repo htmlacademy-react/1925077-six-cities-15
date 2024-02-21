@@ -1,19 +1,18 @@
-import PlaceCard from '../../components/place-card/place-card';
-
-type PageMainProps = {
-  placesCount: number;
-}
+import {PlaceCard} from '../../components/place-card/place-card';
+import {PageMainProps} from '../../types/common-types';
+import {OFFERS} from '../../mock/offers';
+import {LogoActive} from '../../components/logo/logo';
+import {Helmet} from 'react-helmet-async';
 
 function PageMain({placesCount}: PageMainProps) {
   return (
     <div className="page page--gray page--main">
+      <Helmet><title>6 cities</title></Helmet>
       <header className="header">
         <div className="container">
           <div className="header__wrapper">
             <div className="header__left">
-              <a className="header__logo-link header__logo-link--active">
-                <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41"/>
-              </a>
+              <LogoActive/>
             </div>
             <nav className="header__nav">
               <ul className="header__nav-list">
@@ -95,11 +94,7 @@ function PageMain({placesCount}: PageMainProps) {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                <PlaceCard/>
-                <PlaceCard/>
-                <PlaceCard/>
-                <PlaceCard/>
-                <PlaceCard/>
+                {OFFERS.map((offer) => <PlaceCard key={offer.id} {...offer} />)}
               </div>
             </section>
             <div className="cities__right-section">
@@ -112,4 +107,4 @@ function PageMain({placesCount}: PageMainProps) {
   );
 }
 
-export default PageMain;
+export {PageMain};
