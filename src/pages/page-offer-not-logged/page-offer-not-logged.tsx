@@ -1,8 +1,10 @@
 import {Logo} from '../../components/logo/logo';
+import {Helmet} from 'react-helmet-async';
 
 function PageOfferNotLogged() {
   return (
     <div className="page">
+      <Helmet><title>6 cities. Offer</title></Helmet>
       <header className="header">
         <div className="container">
           <div className="header__wrapper">

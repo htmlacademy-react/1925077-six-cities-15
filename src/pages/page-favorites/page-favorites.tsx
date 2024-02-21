@@ -1,8 +1,10 @@
+import {Helmet} from 'react-helmet-async';
 import {Logo} from '../../components/logo/logo';
 
 function PageFavorites() {
   return (
     <div className="page">
+      <Helmet><title>6 cities. Favorites</title></Helmet>
       <header className="header">
         <div className="container">
           <div className="header__wrapper">

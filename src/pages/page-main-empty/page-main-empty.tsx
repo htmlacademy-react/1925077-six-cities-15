@@ -1,8 +1,10 @@
 import {LogoActive} from '../../components/logo/logo';
+import {Helmet} from 'react-helmet-async';
 
 function PageMainEmpty() {
   return (
     <div className="page page--gray page--main">
+      <Helmet><title>6 cities</title></Helmet>
       <header className="header">
         <div className="container">
           <div className="header__wrapper">

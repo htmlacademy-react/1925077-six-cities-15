@@ -6,34 +6,36 @@ import {Page404} from '../../pages/page-404/page-404';
 import {PageFavorites} from '../../pages/page-favorites/page-favorites';
 import {PageLogin} from '../../pages/page-login/page-login';
 import {PrivateRoute} from '../private-route/private-route';
+import {HelmetProvider} from 'react-helmet-async';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route
-          path={AppRoute.Main}
-          element={<PageMain placesCount={PAGEMAIN.placesCount} />}
-        />
-        <Route
-          path={AppRoute.Favorites}
-          element={
-            <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
-              <PageFavorites />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path={AppRoute.Login}
-          element={<PageLogin />}
-        />
-        <Route
-          path={AppRoute.NotFound}
-          element={<Page404 />}
-        />
-      </Routes>
-
-    </BrowserRouter>
+    <HelmetProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route
+            path={AppRoute.Main}
+            element={<PageMain placesCount={PAGEMAIN.placesCount} />}
+          />
+          <Route
+            path={AppRoute.Favorites}
+            element={
+              <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
+                <PageFavorites />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path={AppRoute.Login}
+            element={<PageLogin />}
+          />
+          <Route
+            path={AppRoute.NotFound}
+            element={<Page404 />}
+          />
+        </Routes>
+      </BrowserRouter>
+    </HelmetProvider>
   );
 }
 
