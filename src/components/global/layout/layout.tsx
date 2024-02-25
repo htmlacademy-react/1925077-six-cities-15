@@ -1,37 +1,47 @@
 import {Link, Outlet, useLocation} from 'react-router-dom';
 import {Logo} from '../logo/logo';
 import {AppRoute, AuthorizationStatus, getAuthorizationStatus} from '../../../types/routes';
+import {useDocumentTitle} from '../../../hooks/document-title';
 
 const getLayoutStyle = (pathname: AppRoute) => {
   let rootClassName = '';
   let isActiveLogo = false;
   let isNav = true;
   let isFooter = false;
+  let title = '6 cities';
 
   if (pathname === AppRoute.Main) {
     rootClassName = 'page--gray page--main';
     isActiveLogo = true;
+    title = '6 cities';
   } else if (pathname === AppRoute.FavoritesEmpty) {
     rootClassName = 'page--favorites-empty';
     isFooter = true;
+    title += '. Favorites';
   } else if (pathname === AppRoute.Login) {
     rootClassName = 'page--gray page--login';
     isNav = false;
+    title = '6 cities. Login';
   } else if (pathname === AppRoute.Favorites) {
     isFooter = true;
+    title += '. Favorites';
   }
   return {
     rootClassName,
     isActiveLogo,
     isNav,
-    isFooter
+    isFooter,
+    title
   };
 };
 
+
 export function Layout() {
   const {pathname} = useLocation();
-  const {rootClassName, isActiveLogo, isNav, isFooter} = getLayoutStyle(pathname as AppRoute);
+  const {rootClassName, isActiveLogo, isNav, isFooter, title} = getLayoutStyle(pathname as AppRoute);
   const authorizationStatus = getAuthorizationStatus();
+
+  useDocumentTitle(title);
 
   return (
     <div className={`page ${rootClassName}`}>

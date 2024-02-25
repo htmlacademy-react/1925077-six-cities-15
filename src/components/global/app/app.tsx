@@ -16,7 +16,7 @@ function App() {
     <HelmetProvider>
       <BrowserRouter>
         <Routes>
-          <Route path={AppRoute.Main} element={<Layout />}>
+          <Route path={AppRoute.Main} element={<Layout/>}>
             <Route
               index
               element={<PageMain placesCount={PAGEMAIN.placesCount} />}
