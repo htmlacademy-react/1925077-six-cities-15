@@ -1,19 +1,12 @@
 import {Helmet} from 'react-helmet-async';
-import {Logo} from '../../components/logo/logo';
 
 function PageLogin() {
   return (
-    <div className="page page--gray page--login">
+    <>
+      {/* На странице Login добавляются классы "page--gray page--login" */}
       <Helmet><title>6 cities. Login</title></Helmet>
-      <header className="header">
-        <div className="container">
-          <div className="header__wrapper">
-            <div className="header__left">
-              <Logo/>
-            </div>
-          </div>
-        </div>
-      </header>
+
+      {/* в header не будет навигационного меню */}
 
       <main className="page__main page__main--login">
         <div className="page__login-container container">
@@ -40,7 +33,7 @@ function PageLogin() {
           </section>
         </div>
       </main>
-    </div>
+    </>
   );
 }
 
