@@ -1,4 +1,3 @@
-import {LogoActive} from '../../components/global/logo/logo';
 import {Helmet} from 'react-helmet-async';
 
 function PageMainEmpty() {

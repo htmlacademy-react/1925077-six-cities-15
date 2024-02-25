@@ -1,6 +1,8 @@
 import {OfferProps} from '../../types/common-types';
 
-function PlaceCard(props: OfferProps) {
+type PlaceCardProps = Pick<OfferProps, 'isPremium' | 'previewImage' | 'price' | 'title' | 'rating' | 'type'>;
+
+function PlaceCard(props: PlaceCardProps) {
   return (
     <article className="cities__card place-card">
       {props.isPremium && <div className="place-card__mark"><span>Premium</span></div>}
