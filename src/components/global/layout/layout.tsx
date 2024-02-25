@@ -1,6 +1,6 @@
 import {Link, Outlet, useLocation} from 'react-router-dom';
 import {Logo} from '../logo/logo';
-import {AppRoute} from '../../../types/routes';
+import {AppRoute, AuthorizationStatus, getAuthorizationStatus} from '../../../types/routes';
 
 const getLayoutStyle = (pathname: AppRoute) => {
   let rootClassName = '';
@@ -31,6 +31,7 @@ const getLayoutStyle = (pathname: AppRoute) => {
 export function Layout() {
   const {pathname} = useLocation();
   const {rootClassName, isActiveLogo, isNav, isFooter} = getLayoutStyle(pathname as AppRoute);
+  const authorizationStatus = getAuthorizationStatus();
 
   return (
     <div className={`page ${rootClassName}`}>
@@ -51,15 +52,22 @@ export function Layout() {
                     <a className="header__nav-link header__nav-link--profile" href="#">
                       <div className="header__avatar-wrapper user__avatar-wrapper">
                       </div>
-                      <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
-                      <span className="header__favorite-count">0</span>
+                      {authorizationStatus === AuthorizationStatus.Auth ? (
+                        <>
+                          <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
+                          <span className="header__favorite-count">0</span>
+                        </>)
+                        : <span className="header__login">Sign in</span>}
                     </a>
                   </li>
-                  <li className="header__nav-item">
-                    <a className="header__nav-link" href="#">
-                      <span className="header__signout">Sign out</span>
-                    </a>
-                  </li>
+
+                  {(authorizationStatus === AuthorizationStatus.Auth) && (
+                    <li className="header__nav-item">
+                      <a className="header__nav-link" href="#">
+                        <span className="header__signout">Sign out</span>
+                      </a>
+                    </li>
+                  )}
                 </ul>
               </nav>
 
