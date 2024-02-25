@@ -14,10 +14,9 @@ function App() {
     <HelmetProvider>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Layout />}>
+          <Route path={AppRoute.Main} element={<Layout />}>
             <Route
-              // при открытии главной страницы на .page добавляются классы "page--gray page--main"
-              path={AppRoute.Main}
+              index
               element={<PageMain placesCount={PAGEMAIN.placesCount} />}
             />
             <Route
