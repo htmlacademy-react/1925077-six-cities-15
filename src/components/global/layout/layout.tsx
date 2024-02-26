@@ -21,7 +21,7 @@ const getLayoutStyle = (pathname: AppRoute) => {
   } else if (pathname === AppRoute.Login) {
     rootClassName = 'page--gray page--login';
     isNav = false;
-    title = '6 cities. Login';
+    title += '. Login';
   } else if (pathname === AppRoute.Favorites) {
     isFooter = true;
     title += '. Favorites';

@@ -8,6 +8,7 @@ import {PageLogin} from '../../../pages/page-login/page-login';
 import {PrivateRoute} from '../private-route/private-route';
 import {HelmetProvider} from 'react-helmet-async';
 import {Layout} from '../layout/layout';
+import {PageOffer} from '../../../pages/page-offer/page-offer';
 
 function App() {
   const authorizationStatus = getAuthorizationStatus();
@@ -36,6 +37,10 @@ function App() {
                   <PageLogin />
                 </PrivateRoute>
               }
+            />
+            <Route
+              path={AppRoute.Offer}
+              element={<PageOffer />}
             />
           </Route>
           <Route
