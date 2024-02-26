@@ -1,5 +1,5 @@
 import {Link, Outlet, useLocation} from 'react-router-dom';
-import {Logo} from '../logo/logo';
+import {HeaderLogo} from '../../header-logo/header-logo';
 import {AppRoute, AuthorizationStatus, getAuthorizationStatus} from '../../../types/routes';
 import {useDocumentTitle} from '../../../hooks/document-title';
 
@@ -50,7 +50,7 @@ export function Layout() {
           <div className="header__wrapper">
             <div className="header__left">
 
-              <Logo isActiveLogo={isActiveLogo}/>
+              <HeaderLogo isActiveLogo={isActiveLogo}/>
 
             </div>
 

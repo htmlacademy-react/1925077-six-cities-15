@@ -1,7 +1,7 @@
 import {Link} from 'react-router-dom';
-import {AppRoute} from '../../../types/routes';
+import {AppRoute} from '../../types/routes';
 
-export function Logo({isActiveLogo}: {isActiveLogo: boolean}) {
+export function HeaderLogo({isActiveLogo}: {isActiveLogo: boolean}) {
   return (
     !isActiveLogo ? (
       <Link className="header__logo-link" to={AppRoute.Main}>
