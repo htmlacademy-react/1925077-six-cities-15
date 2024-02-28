@@ -1,5 +1,5 @@
 import {Link, Outlet, useLocation} from 'react-router-dom';
-import {HeaderLogo} from '../../header-logo/header-logo';
+import {HeaderLogo} from './header-logo/header-logo';
 import {AppRoute, AuthorizationStatus, getAuthorizationStatus} from '../../../types/routes';
 import {useDocumentTitle} from '../../../hooks/document-title';
 
