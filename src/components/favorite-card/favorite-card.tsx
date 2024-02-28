@@ -1,14 +1,15 @@
+import {Link} from 'react-router-dom';
 import {ListOfferProps} from '../../types/common-types';
 
-type FavoriteCardProps = Pick<ListOfferProps, 'isPremium' | 'previewImage' | 'price' | 'title' | 'rating' | 'type'>;
+type FavoriteCardProps = Pick<ListOfferProps, 'id' | 'isPremium' | 'previewImage' | 'price' | 'title' | 'rating' | 'type'>;
 export function FavoriteCard(props: FavoriteCardProps) {
   return (
     <article className="favorites__card place-card">
       {props.isPremium && <div className="place-card__mark"><span>Premium</span></div>}
       <div className="favorites__image-wrapper place-card__image-wrapper">
-        <a href="#">
+        <Link to={`/offer/${props.id}`}>
           <img className="place-card__image" src="img/apartment-small-03.jpg" width="150" height="110" alt="Place image"/>
-        </a>
+        </Link>
       </div>
       <div className="favorites__card-info place-card__info">
         <div className="place-card__price-wrapper">
@@ -30,7 +31,7 @@ export function FavoriteCard(props: FavoriteCardProps) {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#">{props.title}</a>
+          <Link to={`/offer/${props.id}`}>{props.title}</Link>
         </h2>
         <p className="place-card__type" style={{textTransform: 'capitalize'}}>{props.type}</p>
       </div>
