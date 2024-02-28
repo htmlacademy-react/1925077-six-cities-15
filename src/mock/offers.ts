@@ -1,6 +1,6 @@
-import {OfferProps} from '../types/common-types';
+import {ListOfferProps} from '../types/common-types';
 
-export const OFFERS: OfferProps[] = [
+export const OFFERS: ListOfferProps[] = [
   {
     'id': 'e87f801c-aaaf-4ec8-ba26-c4146257f4be',
     'title': 'The Pondhouse - A Magical Place',

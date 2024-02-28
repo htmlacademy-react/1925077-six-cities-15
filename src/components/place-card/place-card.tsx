@@ -1,6 +1,6 @@
-import {OfferProps} from '../../types/common-types';
+import {ListOfferProps} from '../../types/common-types';
 
-type PlaceCardProps = Pick<OfferProps, 'isPremium' | 'previewImage' | 'price' | 'title' | 'rating' | 'type'>;
+type PlaceCardProps = Pick<ListOfferProps, 'isPremium' | 'previewImage' | 'price' | 'title' | 'rating' | 'type'>;
 
 function PlaceCard(props: PlaceCardProps) {
   return (
