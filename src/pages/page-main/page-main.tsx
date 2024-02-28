@@ -1,6 +1,5 @@
-import {PlaceCard} from '../../components/place-card/place-card';
 import {PageMainProps} from '../../types/common-types';
-import {OFFERS} from '../../mock/offers';
+import {ListOffers} from '../../components/list-offers/list-offers';
 
 function PageMain({placesCount}: PageMainProps) {
   return (
@@ -62,9 +61,7 @@ function PageMain({placesCount}: PageMainProps) {
                 <li className="places__option" tabIndex={0}>Top rated first</li>
               </ul>
             </form>
-            <div className="cities__places-list places__list tabs__content">
-              {OFFERS.map((offer) => <PlaceCard key={offer.id} {...offer} />)}
-            </div>
+            <ListOffers />
           </section>
           <div className="cities__right-section">
             <section className="cities__map map"></section>
