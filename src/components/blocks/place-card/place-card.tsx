@@ -1,5 +1,6 @@
 import {Link} from 'react-router-dom';
 import {ListOfferProps} from '../../../types/common-types';
+import {Rating} from '../rating/rating';
 
 type PlaceCardProps = Pick<ListOfferProps, 'id' | 'isPremium' | 'previewImage' | 'price' | 'title' | 'rating' | 'type'>;
 
@@ -25,12 +26,7 @@ function PlaceCard(props: PlaceCardProps) {
             <span className="visually-hidden">To bookmarks</span>
           </button>
         </div>
-        <div className="place-card__rating rating">
-          <div className="place-card__stars rating__stars">
-            <span style={{width: `${props.rating * 20}%`}}></span>
-            <span className="visually-hidden">Rating</span>
-          </div>
-        </div>
+        <Rating bemBlock="place-card" rating={props.rating}/>
         <h2 className="place-card__name">
           <Link to={`/offer/${props.id}`}>{props.title}</Link>
         </h2>
