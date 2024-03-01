@@ -39,4 +39,6 @@ export interface Host {
 
 export interface ListOfferProps extends Omit<OfferProps, 'description' | 'bedrooms' | 'goods' | 'host' | 'images' | 'maxAdults'> {
   previewImage: string;
+  onMouseEnter: (id: string) => void;
+  onMouseLeave: () => void;
 }

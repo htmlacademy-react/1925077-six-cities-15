@@ -2,11 +2,15 @@ import {Link} from 'react-router-dom';
 import {ListOfferProps} from '../../../types/common-types';
 import {Rating} from '../rating/rating';
 
-type PlaceCardProps = Pick<ListOfferProps, 'id' | 'isPremium' | 'previewImage' | 'price' | 'title' | 'rating' | 'type'>;
+type PlaceCardProps = Pick<ListOfferProps, 'id' | 'isPremium' | 'previewImage' | 'price' | 'title' | 'rating' | 'type' | 'onMouseEnter' | 'onMouseLeave'>;
 
 function PlaceCard(props: PlaceCardProps) {
   return (
-    <article className="cities__card place-card">
+    <article
+      className="cities__card place-card"
+      onMouseEnter={() => props.onMouseEnter(props.id)}
+      onMouseLeave={() => props.onMouseLeave()}
+    >
       {props.isPremium && <div className="place-card__mark"><span>Premium</span></div>}
       <div className="cities__image-wrapper place-card__image-wrapper">
         <Link to={`/offer/${props.id}`}>
