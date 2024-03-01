@@ -1,4 +1,4 @@
-import {PlaceCard} from '../../components/place-card/place-card';
+import {PlaceCard} from '../../components/blocks/place-card/place-card';
 import {OFFERS} from '../../mock/offers';
 import {PageMainProps} from '../../types/common-types';
 

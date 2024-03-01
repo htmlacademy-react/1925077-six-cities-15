@@ -1,4 +1,4 @@
-import {FavoriteCard} from '../../components/favorite-card/favorite-card';
+import {FavoriteCard} from '../../components/blocks/favorite-card/favorite-card';
 import {FAVORITES_OFFERS} from '../../mock/favorites-offers';
 
 function PageFavorites() {

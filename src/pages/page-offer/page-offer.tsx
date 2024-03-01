@@ -1,4 +1,4 @@
-import {FormReview} from '../../components/form-review/form-review';
+import {FormReview} from '../../components/blocks/form-review/form-review';
 
 function PageOffer() {
   return (
