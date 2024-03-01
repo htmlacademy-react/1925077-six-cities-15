@@ -1,7 +1,6 @@
 import {Route, Routes, BrowserRouter} from 'react-router-dom';
 import {AppRoute, getAuthorizationStatus} from '../../../types/routes';
 import {PageMain} from '../../../pages/page-main/page-main';
-import {PAGEMAIN} from '../../../mock/common-mock';
 import {Page404} from '../../../pages/page-404/page-404';
 import {PageFavorites} from '../../../pages/page-favorites/page-favorites';
 import {PageLogin} from '../../../pages/page-login/page-login';
@@ -20,7 +19,7 @@ function App() {
           <Route path={AppRoute.Main} element={<Layout/>}>
             <Route
               index
-              element={<PageMain placesCount={PAGEMAIN.placesCount} />}
+              element={<PageMain />}
             />
             <Route
               path={AppRoute.Favorites}
