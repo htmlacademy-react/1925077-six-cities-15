@@ -1,15 +1,47 @@
 import {Link} from 'react-router-dom';
 import {AppRoute} from '../../../../types/routes';
 
-export function HeaderLogo({isActiveLogo}: {isActiveLogo: boolean}) {
+interface Logo {
+  footerLogo: boolean;
+  isActiveLogo: boolean;
+}
+
+export function Logo({isActiveLogo, footerLogo}: Logo) {
+  let width = 81;
+  let height = 41;
+  let bemBlock = 'header';
+
+  if (footerLogo) {
+    width = 64;
+    height = 33;
+    bemBlock = 'footer';
+  }
+
   return (
     !isActiveLogo ? (
-      <Link className="header__logo-link" to={AppRoute.Main}>
-        <img className="header__logo-link" src="img/logo.svg" alt="6 cities logo" width="81" height="41"/>
+      <Link
+        className={`${bemBlock}__logo-link`}
+        to={AppRoute.Main}
+      >
+        <img
+          className={`${bemBlock}__logo`}
+          src="img/logo.svg"
+          alt="6 cities logo"
+          width={width}
+          height={height}
+        />
       </Link>
     ) : (
-      <span className="header__logo-link header__logo-link--active">
-        <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41"/>
+      <span
+        className={`${bemBlock}__logo-link ${bemBlock}__logo-link--active`}
+      >
+        <img
+          className={`${bemBlock}__logo`}
+          src="img/logo.svg"
+          alt="6 cities logo"
+          width={width}
+          height={height}
+        />
       </span>
     )
   );

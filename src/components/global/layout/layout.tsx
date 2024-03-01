@@ -1,5 +1,5 @@
-import {Link, Outlet, useLocation} from 'react-router-dom';
-import {HeaderLogo} from './header-logo/header-logo';
+import {Outlet, useLocation} from 'react-router-dom';
+import {Logo} from './header-logo/header-logo';
 import {AppRoute, AuthorizationStatus, getAuthorizationStatus} from '../../../types/routes';
 import {useDocumentTitle} from '../../../hooks/document-title';
 
@@ -50,7 +50,7 @@ export function Layout() {
           <div className="header__wrapper">
             <div className="header__left">
 
-              <HeaderLogo isActiveLogo={isActiveLogo}/>
+              <Logo isActiveLogo={isActiveLogo} footerLogo/>
 
             </div>
 
@@ -91,9 +91,7 @@ export function Layout() {
 
       {isFooter && (
         <footer className="footer container">
-          <Link className="footer__logo-link" to={AppRoute.Main}>
-            <img className="footer__logo" src="img/logo.svg" alt="6 cities logo" width="64" height="33"/>
-          </Link>
+          <Logo isActiveLogo={isActiveLogo} footerLogo/>
         </footer>
       )}
 
