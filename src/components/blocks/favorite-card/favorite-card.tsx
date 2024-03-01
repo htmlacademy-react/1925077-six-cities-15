@@ -1,7 +1,7 @@
 import {Link} from 'react-router-dom';
-import {ListOfferProps} from '../../../types/common-types';
+import {OfferCardProps} from '../../../types/common-types';
 
-type FavoriteCardProps = Pick<ListOfferProps, 'id' | 'isPremium' | 'previewImage' | 'price' | 'title' | 'rating' | 'type'>;
+type FavoriteCardProps = Pick<OfferCardProps, 'id' | 'isPremium' | 'previewImage' | 'price' | 'title' | 'rating' | 'type'>;
 export function FavoriteCard(props: FavoriteCardProps) {
   return (
     <article className="favorites__card place-card">

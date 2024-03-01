@@ -37,7 +37,7 @@ export interface Host {
   isPro: boolean;
 }
 
-export interface ListOfferProps extends Omit<OfferProps, 'description' | 'bedrooms' | 'goods' | 'host' | 'images' | 'maxAdults'> {
+export interface OfferCardProps extends Omit<OfferProps, 'description' | 'bedrooms' | 'goods' | 'host' | 'images' | 'maxAdults'> {
   previewImage: string;
   onMouseEnter: (id: string) => void;
   onMouseLeave: () => void;
