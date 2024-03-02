@@ -2,7 +2,7 @@ export type PageMainProps = {
   placesCount: number;
 }
 
-export type OfferProps = {
+export interface OfferProps {
   id: string;
   title: string;
   type: string;
@@ -12,16 +12,33 @@ export type OfferProps = {
   isFavorite: boolean;
   isPremium: boolean;
   rating: number;
-  previewImage: string;
+  description: string;
+  bedrooms: number;
+  goods: string[];
+  host: Host;
+  images: string[];
+  maxAdults: number;
 }
 
-export type City = {
+export interface City {
   name: string;
   location: Location;
 }
 
-export type Location = {
+export interface Location {
   latitude: number;
   longitude: number;
   zoom: number;
+}
+
+export interface Host {
+  name: string;
+  avatarUrl: string;
+  isPro: boolean;
+}
+
+export interface OfferCardProps extends Omit<OfferProps, 'description' | 'bedrooms' | 'goods' | 'host' | 'images' | 'maxAdults'> {
+  previewImage: string;
+  onMouseEnter?: (id: string) => void;
+  onMouseLeave?: () => void;
 }
