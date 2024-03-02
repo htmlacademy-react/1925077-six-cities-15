@@ -24,6 +24,7 @@ export function Cities({placesCount}: PageMainProps) {
                 key={offer.id}
                 {...offer}
                 onMouseEnter={handleMouseEnter}
+                onMouseLeave={() => setHoveredCardId('')}
               />
             ))}
           </div>
