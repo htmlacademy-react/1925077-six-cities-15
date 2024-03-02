@@ -24,8 +24,6 @@ export function Cities({placesCount}: PageMainProps) {
                 key={offer.id}
                 {...offer}
                 onMouseEnter={handleMouseEnter}
-                // если нужно удалить id при unHover
-                // onMouseLeave={() => setHoveredCardId('')}
               />
             ))}
           </div>
