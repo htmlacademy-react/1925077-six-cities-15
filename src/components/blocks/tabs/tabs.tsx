@@ -1,4 +1,3 @@
-import {useState} from 'react';
 import classNames from 'classnames';
 import {NAMES_OF_CITIES} from '../../../mock/common-mock';
 import {CityName} from '../../../types/common-types';
@@ -9,6 +8,11 @@ type TabProps = {
   isActive: boolean;
   onClick: () => void;
 };
+
+interface TabsProps {
+  activeTab: string | null;
+  setActiveTab: (city: string) => void;
+}
 
 export function Tab(props: TabProps) {
   const className = classNames('locations__item-link tabs__item', {
@@ -24,11 +28,11 @@ export function Tab(props: TabProps) {
   );
 }
 
-export function Tabs() {
-  const [activeTab, setActiveTab] = useState<string | null>(null);
-
+export function Tabs({activeTab, setActiveTab}: TabsProps) {
   const handleTabClick = (city: string) => {
-    setActiveTab(city === activeTab ? null : city);
+    if (city !== activeTab) {
+      setActiveTab(city);
+    }
   };
 
   return (
