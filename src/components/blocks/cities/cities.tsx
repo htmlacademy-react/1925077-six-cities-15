@@ -4,12 +4,18 @@ import {PageMainProps} from '../../../types/common-types';
 import {PlaceCard} from '../place-card/place-card';
 import {PlacesSorting} from '../places-sorting/places-sorting';
 
-export function Cities({placesCount}: PageMainProps) {
+export function Cities({placesCount, activeTab}: PageMainProps) {
   const [hoveredCardId, setHoveredCardId] = useState('');
 
   const handleMouseEnter = (id: string): void => {
     setHoveredCardId(id);
   };
+
+  let filteredOffers = OFFERS;
+
+  if (activeTab) {
+    filteredOffers = OFFERS.filter((offer) => offer.city.name === activeTab);
+  }
 
   return (
     <div className="cities">
@@ -19,7 +25,7 @@ export function Cities({placesCount}: PageMainProps) {
           <b className="places__found">{placesCount} places to stay in Amsterdam {hoveredCardId}</b>
           <PlacesSorting/>
           <div className="cities__places-list places__list tabs__content">
-            {OFFERS.map((offer) => (
+            {filteredOffers.map((offer) => (
               <PlaceCard
                 key={offer.id}
                 {...offer}

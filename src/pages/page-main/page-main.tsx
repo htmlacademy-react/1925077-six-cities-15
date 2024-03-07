@@ -14,7 +14,7 @@ function PageMain() {
     <main className="page__main page__main--index">
       <h1 className="visually-hidden">Cities</h1>
       <Tabs activeTab={activeTab} setActiveTab={handleCityChange}/>
-      <Cities placesCount={PAGEMAIN.placesCount}/>
+      <Cities placesCount={PAGEMAIN.placesCount} activeTab={activeTab}/>
     </main>
   );
 }

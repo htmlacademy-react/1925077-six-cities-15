@@ -1,5 +1,6 @@
 export type PageMainProps = {
   placesCount: number;
+  activeTab: string | null;
 }
 
 export type CityName = 'Paris' | 'Cologne' | 'Brussels' | 'Amsterdam' | 'Hamburg' | 'Dusseldorf';
