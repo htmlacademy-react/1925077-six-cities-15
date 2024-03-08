@@ -3,6 +3,16 @@ import {OFFERS} from '../../../mock/offers';
 import {PageMainProps} from '../../../types/common-types';
 import {PlaceCard} from '../place-card/place-card';
 import {PlacesSorting} from '../places-sorting/places-sorting';
+import {LeafletMap} from '../leaflet-map/leaflet-map';
+import {POINTS} from '../leaflet-map/mock';
+
+const CITY = {
+  title: 'Нью-Йорк',
+  lat: 52.37454,
+  lng: 4.897976,
+  zoom: 10,
+};
+
 
 export function Cities({placesCount, activeTab}: PageMainProps) {
   const [hoveredCardId, setHoveredCardId] = useState('');
@@ -16,6 +26,8 @@ export function Cities({placesCount, activeTab}: PageMainProps) {
   if (activeTab) {
     filteredOffers = OFFERS.filter((offer) => offer.city.name === activeTab);
   }
+
+  // console.log(filteredOffers);
 
   return (
     <div className="cities">
@@ -36,7 +48,7 @@ export function Cities({placesCount, activeTab}: PageMainProps) {
           </div>
         </section>
         <div className="cities__right-section">
-          <section className="cities__map map"></section>
+          <LeafletMap city={CITY} points={POINTS}/>
         </div>
       </div>
     </div>
