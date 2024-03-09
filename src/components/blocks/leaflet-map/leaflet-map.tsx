@@ -7,16 +7,16 @@ import {MARKER_CURRENT, MARKER_DEFAULT} from './const';
 
 
 export interface LeafletMapProps {
-  title: string;
-  lat: number;
-  lng: number;
+  // title: string;
+  latitude: number;
+  longitude: number;
   zoom: number;
 }
 
 export interface PointsProps {
   title: string;
-  lat: number;
-  lng: number;
+  latitude: number;
+  longitude: number;
 }
 
 type CityProps = {
@@ -48,8 +48,8 @@ export function LeafletMap({city, points}: CityProps) {
       points.forEach((point) => {
         leaflet
           .marker({
-            lat: point.lat,
-            lng: point.lng,
+            lat: point.latitude,
+            lng: point.longitude,
           }, {
             icon: defaultCustomIcon,
           })

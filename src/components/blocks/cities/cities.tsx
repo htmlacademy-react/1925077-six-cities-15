@@ -6,12 +6,12 @@ import {PlacesSorting} from '../places-sorting/places-sorting';
 import {LeafletMap} from '../leaflet-map/leaflet-map';
 import {POINTS} from '../leaflet-map/mock';
 
-const CITY = {
-  title: 'Нью-Йорк',
-  lat: 52.37454,
-  lng: 4.897976,
-  zoom: 10,
-};
+// const CITY = {
+//   title: 'Нью-Йорк',
+//   latitude: 52.37454,
+//   longitude: 4.897976,
+//   zoom: 10,
+// };
 
 
 export function Cities({placesCount, activeTab}: PageMainProps) {
@@ -22,12 +22,14 @@ export function Cities({placesCount, activeTab}: PageMainProps) {
   };
 
   let filteredOffers = OFFERS;
+  let city = OFFERS[75].city.location;
+  let points = OFFERS.map((offer) => ({title: offer.title, latitude: offer.location.latitude, longitude: offer.location.longitude}));
 
   if (activeTab) {
     filteredOffers = OFFERS.filter((offer) => offer.city.name === activeTab);
+    city = filteredOffers[0].city.location;// на данный момент не отображается
+    points = filteredOffers.map((offer) => ({title: offer.title, latitude: offer.location.latitude, longitude: offer.location.longitude}));
   }
-
-  // console.log(filteredOffers);
 
   return (
     <div className="cities">
@@ -48,7 +50,7 @@ export function Cities({placesCount, activeTab}: PageMainProps) {
           </div>
         </section>
         <div className="cities__right-section">
-          <LeafletMap city={CITY} points={POINTS}/>
+          <LeafletMap city={city} points={points}/>
         </div>
       </div>
     </div>

@@ -6,15 +6,12 @@ export function useMap(mapRef, city) {
   const [map, setMap] = useState(null);
   const isRenderedRef = useRef(false);
 
-  console.log(city);
-  console.log(mapRef);
-
   useEffect(() => {
     if (mapRef.current !== null && !isRenderedRef.current) {
       const instance = leaflet.map(mapRef.current, {
         center: {
-          lat: city.lat,
-          lng: city.lng,
+          lat: city.latitude,
+          lng: city.longitude,
         },
         zoom: city.zoom,
       });
