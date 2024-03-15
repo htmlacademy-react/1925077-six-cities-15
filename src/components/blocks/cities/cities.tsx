@@ -4,7 +4,7 @@ import {PageMainProps} from '../../../types/common-types';
 import {PlaceCard} from '../place-card/place-card';
 import {PlacesSorting} from '../places-sorting/places-sorting';
 import {LeafletMap} from '../leaflet-map/leaflet-map';
-import {NAMES_OF_CITIES} from '../../../mock/common-mock';
+import {START_CITY} from '../../../pages/page-main/const';
 
 interface CitiesProps extends Pick<PageMainProps, 'placesCount'> {
   selectedCity?: string | null;
@@ -17,7 +17,7 @@ export function Cities({placesCount, selectedCity}: CitiesProps) {
     setHoveredCardId(id);
   };
 
-  let filteredOffers = OFFERS.filter((offer) => offer.city.name === NAMES_OF_CITIES[0]);
+  let filteredOffers = OFFERS.filter((offer) => offer.city.name === START_CITY);
 
   if (selectedCity) {
     filteredOffers = OFFERS.filter((offer) => offer.city.name === selectedCity);
