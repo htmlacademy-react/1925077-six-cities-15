@@ -1,47 +1,38 @@
 import {useEffect, useRef} from 'react';
-// import {OfferProps} from '../../../types/common-types';
 import {useMap} from './use-leaflet-map';
 import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import {MARKER_CURRENT, MARKER_DEFAULT} from './const';
+import { MARKER_DEFAULT} from './const';
+import {City} from '../../../types/common-types';
 
-
-export interface LeafletMapProps {
-  // title: string;
-  latitude: number;
-  longitude: number;
-  zoom: number;
-}
 
 export interface PointsProps {
-  title: string;
   latitude: number;
   longitude: number;
 }
 
 type CityProps = {
-  city: LeafletMapProps;
+  city: City;
   points: PointsProps[];
+  activeId: string;
 }
 
+const defaultCustomIcon = leaflet.icon({
+  iconUrl: MARKER_DEFAULT,
+  iconSize: [40, 40],
+  iconAnchor: [20, 40],
+});
 
-export function LeafletMap({city, points}: CityProps) {
-  const mapRef = useRef(null);
-  const map = useMap(mapRef, city);
-  // const [selectedPoint, setSelectedPoint] = useState({});
-  // const handleListItemHover = (listItemName) => {};
+// const currentCustomIcon = leaflet.icon({
+//   iconUrl: MARKER_CURRENT,
+//   iconSize: [40, 40],
+//   iconAnchor: [20, 40],
+// });
 
-  const defaultCustomIcon = leaflet.icon({
-    iconUrl: MARKER_DEFAULT,
-    iconSize: [40, 40],
-    iconAnchor: [20, 40],
-  });
 
-  const currentCustomIcon = leaflet.icon({
-    iconUrl: MARKER_CURRENT,
-    iconSize: [40, 40],
-    iconAnchor: [20, 40],
-  });
+export function LeafletMap({city, points, activeId}: CityProps) {
+  const mapRef = useRef<HTMLElement>(null);
+  const map = useMap(mapRef, city.location);
 
   useEffect(() => {
     if (map) {

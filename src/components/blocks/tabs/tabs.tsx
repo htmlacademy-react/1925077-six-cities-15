@@ -1,50 +1,45 @@
 import classNames from 'classnames';
-import {NAMES_OF_CITIES} from '../../../mock/common-mock';
+import {CITIES} from '../../../mock/common-mock';
 import {CityName} from '../../../types/common-types';
 import {Link} from 'react-router-dom';
 
-type TabProps = {
+interface TabProps {
   city: CityName;
   isActive: boolean;
-  onClick: () => void;
-};
-
-interface TabsProps {
-  activeTab: string | null;
-  setActiveTab: (city: string) => void;
+  onClick: (city: CityName) => void;
 }
 
-export function Tab(props: TabProps) {
+interface TabsProps {
+  city: CityName;
+  onCitySelect: (city: CityName) => void;
+}
+
+export function Tab({isActive, city, onClick}: TabProps) {
   const className = classNames('locations__item-link tabs__item', {
-    'tabs__item--active': props.isActive,
+    'tabs__item--active': isActive,
   });
 
   return (
     <li className="locations__item">
-      <Link to='/' className={className} onClick={props.onClick}>
-        <span>{props.city}</span>
+      <Link to='/' className={className} onClick={isActive ? undefined : onClick}>
+        <span>{city}</span>
       </Link>
     </li>
   );
 }
 
-export function Tabs({activeTab, setActiveTab}: TabsProps) {
-  const handleTabClick = (city: string) => {
-    if (city !== activeTab) {
-      setActiveTab(city);
-    }
-  };
+export function Tabs({city: cityName, onCitySelect}: TabsProps) {
 
   return (
     <div className="tabs">
       <section className="locations container">
         <ul className="locations__list tabs__list">
-          {NAMES_OF_CITIES.map((city) => (
+          {CITIES.map((city) => (
             <Tab
               key={city}
               city={city}
-              isActive={city === activeTab}
-              onClick={() => handleTabClick(city)}
+              isActive={cityName === city}
+              onClick={onCitySelect}
             />
           ))}
         </ul>
