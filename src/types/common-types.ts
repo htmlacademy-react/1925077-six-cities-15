@@ -1,11 +1,9 @@
-import {CITIES} from '../mock/common-mock';
-
 export type PageMainProps = {
   placesCount: number;
-  city: CityName;
+  selectedCity: string | null;
 }
 
-export type CityName = typeof CITIES[number];
+export type CityName = 'Paris' | 'Cologne' | 'Brussels' | 'Amsterdam' | 'Hamburg' | 'Dusseldorf';
 
 export interface OfferProps {
   id: string;

@@ -1,17 +1,22 @@
 import {useState} from 'react';
 import {Cities} from '../../components/blocks/cities/cities';
 import {Tabs} from '../../components/blocks/tabs/tabs';
-import {CITIES, PAGEMAIN} from '../../mock/common-mock';
-import {CityName} from '../../types/common-types';
+import {PAGEMAIN} from '../../mock/common-mock';
+
+const PLACES = PAGEMAIN.placesCount;
 
 function PageMain() {
-  const [city, setCity] = useState<CityName>(CITIES[0]);
+  const [activeTab, setActiveTab] = useState<string | null>(null);
+
+  const handleCityChange = (city: string) => {
+    setActiveTab(city);
+  };
 
   return (
     <main className="page__main page__main--index">
       <h1 className="visually-hidden">Cities</h1>
-      <Tabs city={city} onCitySelect={setCity}/>
-      <Cities placesCount={PAGEMAIN.placesCount} city={city}/>
+      <Tabs activeTab={activeTab} setActiveTab={handleCityChange}/>
+      <Cities placesCount={PLACES} selectedCity={activeTab}/>
     </main>
   );
 }

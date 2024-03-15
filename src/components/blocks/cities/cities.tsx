@@ -1,34 +1,27 @@
 import {useState} from 'react';
 import {OFFERS} from '../../../mock/offers';
-import {CityName, OfferCardProps, PageMainProps} from '../../../types/common-types';
+import {PageMainProps} from '../../../types/common-types';
 import {PlaceCard} from '../place-card/place-card';
 import {PlacesSorting} from '../places-sorting/places-sorting';
 import {LeafletMap} from '../leaflet-map/leaflet-map';
+import {NAMES_OF_CITIES} from '../../../mock/common-mock';
 
+interface CitiesProps extends Pick<PageMainProps, 'placesCount'> {
+  selectedCity?: string | null;
+}
 
-export function Cities({placesCount, city}: PageMainProps) {
+export function Cities({placesCount, selectedCity}: CitiesProps) {
   const [hoveredCardId, setHoveredCardId] = useState('');
 
   const handleMouseEnter = (id: string): void => {
     setHoveredCardId(id);
   };
 
-  const offersByCity = {} as Record<CityName, OfferCardProps[]>;
+  let filteredOffers = OFFERS.filter((offer) => offer.city.name === NAMES_OF_CITIES[0]);
 
-  for (const offer of OFFERS) {
-    if (offer.city.name in offersByCity) {
-      offersByCity[offer.city.name].push(offer);
-    } else {
-      offersByCity[offer.city.name] = [offer];
-    }
+  if (selectedCity) {
+    filteredOffers = OFFERS.filter((offer) => offer.city.name === selectedCity);
   }
-
-  const filteredOffers = offersByCity[city] ?? [];
-
-  const points = filteredOffers.map((offer) => ({
-    latitude: offer.location.latitude,
-    longitude: offer.location.longitude,
-  }));
 
   return (
     <div className="cities">
@@ -49,13 +42,10 @@ export function Cities({placesCount, city}: PageMainProps) {
           </div>
         </section>
         <div className="cities__right-section">
-          {Boolean(filteredOffers.length) && (
-            <LeafletMap
-              city={filteredOffers[0].city}
-              points={points}
-              activeId={hoveredCardId}
-            />
-          )}
+          <LeafletMap
+            offers={filteredOffers}
+            activePoint={hoveredCardId}
+          />
         </div>
       </div>
     </div>

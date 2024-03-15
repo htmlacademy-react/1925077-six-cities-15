@@ -32,4 +32,3 @@ export function useMap(mapRef: RefObject<HTMLElement>, location: Location) {
 
   return map;
 }
-

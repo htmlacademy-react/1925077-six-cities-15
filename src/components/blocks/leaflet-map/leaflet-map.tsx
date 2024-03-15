@@ -2,19 +2,14 @@ import {useEffect, useRef} from 'react';
 import {useMap} from './use-leaflet-map';
 import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import { MARKER_DEFAULT} from './const';
-import {City} from '../../../types/common-types';
+import {MARKER_CURRENT, MARKER_DEFAULT} from './const';
+import {OfferProps} from '../../../types/common-types';
 
+interface GenericOffer extends Pick<OfferProps, 'city' | 'id' | 'location'> {}
 
-export interface PointsProps {
-  latitude: number;
-  longitude: number;
-}
-
-type CityProps = {
-  city: City;
-  points: PointsProps[];
-  activeId: string;
+interface LeafletProps {
+  offers: GenericOffer[];
+  activePoint?: string;
 }
 
 const defaultCustomIcon = leaflet.icon({
@@ -23,33 +18,51 @@ const defaultCustomIcon = leaflet.icon({
   iconAnchor: [20, 40],
 });
 
-// const currentCustomIcon = leaflet.icon({
-//   iconUrl: MARKER_CURRENT,
-//   iconSize: [40, 40],
-//   iconAnchor: [20, 40],
-// });
+const currentCustomIcon = leaflet.icon({
+  iconUrl: MARKER_CURRENT,
+  iconSize: [40, 40],
+  iconAnchor: [20, 40],
+});
 
-
-export function LeafletMap({city, points, activeId}: CityProps) {
-  const mapRef = useRef<HTMLElement>(null);
-  const map = useMap(mapRef, city.location);
+export function LeafletMap({offers, activePoint}: LeafletProps) {
+  const mapRef = useRef(null);
+  const location = offers[0].city.location;
+  const map = useMap(mapRef, location);
+  const points = offers.map((offer) => offer.location);
 
   useEffect(() => {
     if (map) {
-      points.forEach((point) => {
+      map.eachLayer((layer) => {
+        if (layer instanceof leaflet.Marker) {
+          map.removeLayer(layer);
+        }
+      });
+
+      points.forEach((point, index) => {
+        const icon = activePoint === offers[index].id ? currentCustomIcon : defaultCustomIcon;
         leaflet
           .marker({
             lat: point.latitude,
             lng: point.longitude,
           }, {
-            icon: defaultCustomIcon,
+            icon: icon,
           })
           .addTo(map);
       });
     }
-  }, [map, points]);
+  }, [map, points, activePoint, offers]);
+
+  useEffect(() => {
+    if (map && location) {
+      map.setView([location.latitude, location.longitude], location.zoom);
+    }
+  }, [location, map, offers]);
 
   return (
-    <section className="cities__map map" ref={mapRef}></section>
+    <section
+      className="cities__map map"
+      ref={mapRef}
+    >
+    </section>
   );
 }
