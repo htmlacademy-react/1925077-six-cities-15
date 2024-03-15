@@ -1,5 +1,6 @@
 import {FormReview} from '../../components/blocks/form-review/form-review';
 import {Review} from '../../components/blocks/review/review';
+import {REVIEWS} from '../../mock/reviews';
 
 function PageOffer() {
   return (
@@ -125,7 +126,17 @@ function PageOffer() {
             <section className="offer__reviews reviews">
               <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">1</span></h2>
               <ul className="reviews__list">
-                <Review />
+
+                {REVIEWS.map((review) => (
+                  <Review
+                    key={review.id}
+                    date={review.date}
+                    user={review.user}
+                    comment={review.comment}
+                    rating={review.rating}
+                  />
+                ))}
+
               </ul>
 
               <FormReview/>
