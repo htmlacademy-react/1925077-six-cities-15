@@ -1,6 +1,9 @@
 export type PageMainProps = {
   placesCount: number;
+  selectedCity: string | null;
 }
+
+export type CityName = 'Paris' | 'Cologne' | 'Brussels' | 'Amsterdam' | 'Hamburg' | 'Dusseldorf';
 
 export interface OfferProps {
   id: string;
@@ -21,7 +24,7 @@ export interface OfferProps {
 }
 
 export interface City {
-  name: string;
+  name: CityName;
   location: Location;
 }
 

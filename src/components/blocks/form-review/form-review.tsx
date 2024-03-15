@@ -7,12 +7,7 @@ export function FormReview() {
     review: '',
   });
 
-  const ratingChangeHandler = (evt: React.ChangeEvent<HTMLInputElement>) => {
-    const {value} = evt.target;
-    setFormData({...formData, rating: Number(value)});
-  };
-
-  const fieldChangeHandler = (evt: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const fieldChangeHandler = (evt: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const {name, value} = evt.target;
     setFormData({...formData, [name]: value});
   };
@@ -20,7 +15,7 @@ export function FormReview() {
   return (
     <form className="reviews__form form" action="#" method="post">
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
-      <RatingInput onChange={ratingChangeHandler}/>
+      <RatingInput onChange={fieldChangeHandler}/>
       <textarea
         className="reviews__textarea form__textarea"
         id="review"

@@ -1,7 +1,7 @@
 import {Outlet, useLocation} from 'react-router-dom';
 import {Logo} from './header-logo/header-logo';
 import {AppRoute, AuthorizationStatus, getAuthorizationStatus} from '../../../types/routes';
-import {useDocumentTitle} from '../../../hooks/document-title';
+import {useDocumentTitle} from '../../../hooks/use-document-title';
 
 const getLayoutStyle = (pathname: AppRoute) => {
   let rootClassName = '';
