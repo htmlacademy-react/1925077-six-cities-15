@@ -17,10 +17,10 @@ export const NEAR_OFFERS = [
       'longitude': 4.673877537499948,
       'zoom': 8
     },
-    'isFavorite': false,
+    'isFavorite': true,
     'isPremium': false,
     'rating': 4,
-    'previewImage': 'https://url-to-image/image.png'
+    'previewImage': 'https://15.design.htmlacademy.pro/static/hotel/5.jpg'
   },
   {
     'id': '97bb24e7-cb11-4fdc-b045-8bf3b8a4c78c',
@@ -87,7 +87,7 @@ export const NEAR_OFFERS = [
       'longitude': 4.9099759999999995,
       'zoom': 8
     },
-    'isFavorite': false,
+    'isFavorite': true,
     'isPremium': true,
     'rating': 1.6
   },
