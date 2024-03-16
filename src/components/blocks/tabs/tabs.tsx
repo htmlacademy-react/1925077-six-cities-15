@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import {NAMES_OF_CITIES} from '../../../mock/common-mock';
+import {NAMES_OF_CITIES} from '../../../consts/common-consts';
 import {CityName} from '../../../types/common-types';
 import {Link} from 'react-router-dom';
 

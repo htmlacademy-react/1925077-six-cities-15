@@ -1,12 +1,14 @@
-import {MONTHS} from '../../../consts/months';
 import {Reviews} from '../../../types/reviews-and-user';
 
 type ReviewProps = Pick<Reviews, 'date' | 'user' | 'comment' | 'rating'>;
 
+function convertDate(date: string) {
+  return new Intl.DateTimeFormat('en-US', {month: 'long', year: 'numeric'}).format(new Date(date));
+}
+
 export function Review({date, user, comment, rating}: ReviewProps) {
   const dateForAttr = date.slice(0, 10).replace(/-/g, '-');
-  const month = MONTHS[new Date(dateForAttr).getMonth()];
-  const year = date.slice(0, 4);
+  const visualDate = convertDate(date);
 
   return (
     <li className="reviews__item">
@@ -33,7 +35,7 @@ export function Review({date, user, comment, rating}: ReviewProps) {
           {comment}
         </p>
         <time className="reviews__time" dateTime={dateForAttr}>
-          {month} {year}
+          {visualDate}
         </time>
       </div>
     </li>

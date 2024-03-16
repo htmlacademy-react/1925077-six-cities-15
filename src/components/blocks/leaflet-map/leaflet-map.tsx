@@ -2,7 +2,7 @@ import {useEffect, useRef} from 'react';
 import {useMap} from './use-leaflet-map';
 import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import {MARKER_CURRENT, MARKER_DEFAULT} from './const';
+import {MARKER_CURRENT, MARKER_DEFAULT, MARKER_SIZE} from './const';
 import {OfferProps} from '../../../types/common-types';
 
 interface GenericOffer extends Pick<OfferProps, 'city' | 'id' | 'location'> {}
@@ -15,14 +15,12 @@ interface LeafletProps {
 
 const defaultCustomIcon = leaflet.icon({
   iconUrl: MARKER_DEFAULT,
-  iconSize: [40, 40],
-  iconAnchor: [20, 40],
+  ...MARKER_SIZE,
 });
 
 const currentCustomIcon = leaflet.icon({
   iconUrl: MARKER_CURRENT,
-  iconSize: [40, 40],
-  iconAnchor: [20, 40],
+  ...MARKER_SIZE,
 });
 
 export function LeafletMap({offers, activePoint, className}: LeafletProps) {

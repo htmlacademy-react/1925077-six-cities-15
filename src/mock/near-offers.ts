@@ -1,27 +1,6 @@
-export const NEAR_OFFERS = [
-  {
-    'id': '6af6f711-c28d-4121-82cd-e0b462a27f00',
-    'title': 'Beautiful & luxurious studio at great location',
-    'type': 'apartment',
-    'price': 120,
-    'city': {
-      'name': 'Amsterdam',
-      'location': {
-        'latitude': 52.35514938496378,
-        'longitude': 4.673877537499948,
-        'zoom': 8
-      }
-    },
-    'location': {
-      'latitude': 52.35514938496378,
-      'longitude': 4.673877537499948,
-      'zoom': 8
-    },
-    'isFavorite': true,
-    'isPremium': false,
-    'rating': 4,
-    'previewImage': 'https://15.design.htmlacademy.pro/static/hotel/5.jpg'
-  },
+import {OfferCardProps} from '../types/common-types';
+
+export const NEAR_OFFERS: OfferCardProps[] = [
   {
     'id': '97bb24e7-cb11-4fdc-b045-8bf3b8a4c78c',
     'title': 'Canal View Prinsengracht',

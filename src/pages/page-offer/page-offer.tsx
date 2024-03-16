@@ -1,4 +1,3 @@
-import {useState} from 'react';
 import {FormReview} from '../../components/blocks/form-review/form-review';
 import {LeafletMap} from '../../components/blocks/leaflet-map/leaflet-map';
 import {PlaceCard} from '../../components/blocks/place-card/place-card';
@@ -7,12 +6,6 @@ import {NEAR_OFFERS} from '../../mock/near-offers';
 import {REVIEWS} from '../../mock/reviews';
 
 function PageOffer() {
-  const [hoveredCardId, setHoveredCardId] = useState('');
-
-  const handleMouseEnter = (id: string): void => {
-    setHoveredCardId(id);
-  };
-
   return (
     <main className="page__main page__main--offer">
       <section className="offer">
@@ -155,7 +148,7 @@ function PageOffer() {
           </div>
         </div>
 
-        <LeafletMap className='offer' offers={NEAR_OFFERS} activePoint={hoveredCardId}/>
+        <LeafletMap className='offer' offers={NEAR_OFFERS} activePoint={NEAR_OFFERS[0].id}/>
 
       </section>
       <div className="container">
@@ -166,8 +159,6 @@ function PageOffer() {
               <PlaceCard
                 key={offer.id}
                 {...offer}
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={() => setHoveredCardId('')}
                 className="near-places"
               />
             ))}
