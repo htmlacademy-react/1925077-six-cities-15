@@ -24,8 +24,8 @@ export interface OfferProps {
 }
 
 export interface City {
-  // name: CityName;
-  name: string;
+  name: CityName;
+  // name: string;
   location: Location;
 }
 
