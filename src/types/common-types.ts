@@ -1,9 +1,11 @@
+import {NAMES_OF_CITIES} from '../consts/common-consts';
+
 export type PageMainProps = {
   placesCount: number;
   selectedCity: string | null;
 }
 
-export type CityName = 'Paris' | 'Cologne' | 'Brussels' | 'Amsterdam' | 'Hamburg' | 'Dusseldorf';
+export type CityName = (typeof NAMES_OF_CITIES)[number];
 
 export interface OfferProps {
   id: string;

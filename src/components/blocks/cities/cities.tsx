@@ -37,6 +37,7 @@ export function Cities({placesCount, selectedCity}: CitiesProps) {
                 {...offer}
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={() => setHoveredCardId('')}
+                className="cities"
               />
             ))}
           </div>
@@ -45,6 +46,7 @@ export function Cities({placesCount, selectedCity}: CitiesProps) {
           <LeafletMap
             offers={filteredOffers}
             activePoint={hoveredCardId}
+            className="cities"
           />
         </div>
       </div>

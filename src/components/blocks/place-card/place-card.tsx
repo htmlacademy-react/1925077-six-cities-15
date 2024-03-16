@@ -1,18 +1,21 @@
 import {Link} from 'react-router-dom';
 import {OfferCardProps} from '../../../types/common-types';
 import {Rating} from '../rating/rating';
+import classNames from 'classnames';
 
-type PlaceCardProps = Pick<OfferCardProps, 'id' | 'isPremium' | 'previewImage' | 'price' | 'title' | 'rating' | 'type' | 'onMouseEnter' | 'onMouseLeave'>;
+type PlaceCardProps = Pick<OfferCardProps, 'id' | 'isPremium' | 'previewImage' | 'price' | 'title' | 'rating' | 'type' | 'isFavorite' | 'onMouseEnter' | 'onMouseLeave'> & {
+  className?: string;
+}
 
-function PlaceCard({id, isPremium, previewImage, price, title, rating, type, onMouseEnter, onMouseLeave}: PlaceCardProps) {
+function PlaceCard({id, isPremium, previewImage, price, title, rating, type, className, isFavorite, onMouseEnter, onMouseLeave}: PlaceCardProps) {
   return (
     <article
-      className="cities__card place-card"
+      className={`${className}__card place-card`}
       onMouseEnter={() => onMouseEnter && onMouseEnter(id)}
       onMouseLeave={() => onMouseLeave && onMouseLeave()}
     >
       {isPremium && <div className="place-card__mark"><span>Premium</span></div>}
-      <div className="cities__image-wrapper place-card__image-wrapper">
+      <div className={`${className}__image-wrapper place-card__image-wrapper`}>
         <Link to={`/offer/${id}`}>
           <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place image"/>
         </Link>
@@ -23,7 +26,11 @@ function PlaceCard({id, isPremium, previewImage, price, title, rating, type, onM
             <b className="place-card__price-value">&euro;{price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <button className="place-card__bookmark-button button" type="button">
+          <button className={classNames(
+            'place-card__bookmark-button button',
+            {'place-card__bookmark-button--active': isFavorite}
+          )} type="button"
+          >
             <svg className="place-card__bookmark-icon" width="18" height="19">
               <use xlinkHref="#icon-bookmark"></use>
             </svg>
