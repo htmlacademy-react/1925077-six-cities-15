@@ -26,7 +26,6 @@ function PlaceCard({id, isPremium, previewImage, price, title, rating, type, cla
             <b className="place-card__price-value">&euro;{price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          {/* "place-card__bookmark-button button" */}
           <button className={classNames(
             'place-card__bookmark-button button',
             {'place-card__bookmark-button--active': isFavorite}

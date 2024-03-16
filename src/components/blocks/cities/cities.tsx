@@ -46,7 +46,7 @@ export function Cities({placesCount, selectedCity}: CitiesProps) {
           <LeafletMap
             offers={filteredOffers}
             activePoint={hoveredCardId}
-            className="cities__map"
+            className="cities"
           />
         </div>
       </div>

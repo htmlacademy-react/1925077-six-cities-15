@@ -61,7 +61,7 @@ export function LeafletMap({offers, activePoint, className}: LeafletProps) {
 
   return (
     <section
-      className={`${className} map`}
+      className={`${className}__map map`}
       ref={mapRef}
     >
     </section>
