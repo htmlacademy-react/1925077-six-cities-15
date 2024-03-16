@@ -1,5 +1,7 @@
 import {FormReview} from '../../components/blocks/form-review/form-review';
+import {LeafletMap} from '../../components/blocks/leaflet-map/leaflet-map';
 import {Review} from '../../components/blocks/review/review';
+import {NEAR_OFFERS} from '../../mock/near-offers';
 import {REVIEWS} from '../../mock/reviews';
 
 function PageOffer() {
@@ -124,7 +126,7 @@ function PageOffer() {
               </div>
             </div>
             <section className="offer__reviews reviews">
-              <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">1</span></h2>
+              <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{REVIEWS.length}</span></h2>
               <ul className="reviews__list">
 
                 {REVIEWS.map((review) => (
@@ -144,7 +146,9 @@ function PageOffer() {
             </section>
           </div>
         </div>
-        <section className="offer__map map"></section>
+
+        <LeafletMap className='offer__map' offers={NEAR_OFFERS}/>
+
       </section>
       <div className="container">
         <section className="near-places places">

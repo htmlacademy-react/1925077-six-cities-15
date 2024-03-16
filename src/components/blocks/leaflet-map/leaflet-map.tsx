@@ -10,6 +10,7 @@ interface GenericOffer extends Pick<OfferProps, 'city' | 'id' | 'location'> {}
 interface LeafletProps {
   offers: GenericOffer[];
   activePoint?: string;
+  className?: string;
 }
 
 const defaultCustomIcon = leaflet.icon({
@@ -24,7 +25,7 @@ const currentCustomIcon = leaflet.icon({
   iconAnchor: [20, 40],
 });
 
-export function LeafletMap({offers, activePoint}: LeafletProps) {
+export function LeafletMap({offers, activePoint, className}: LeafletProps) {
   const mapRef = useRef(null);
   const location = offers[0].city.location;
   const map = useMap(mapRef, location);
@@ -60,7 +61,7 @@ export function LeafletMap({offers, activePoint}: LeafletProps) {
 
   return (
     <section
-      className="cities__map map"
+      className={`${className} map`}
       ref={mapRef}
     >
     </section>
