@@ -10,8 +10,10 @@ interface CitiesProps extends Pick<PageMainProps, 'placesCount'> {
   selectedCity?: string | null;
 }
 
-export function Cities({placesCount, selectedCity}: CitiesProps) {
+export function Cities({selectedCity}: CitiesProps) {
   const [hoveredCardId, setHoveredCardId] = useState('');
+
+  const placesCount = selectedCity ? OFFERS.filter((offer) => offer.city.name === selectedCity).length : OFFERS.length;
 
   const handleMouseEnter = (id: string): void => {
     setHoveredCardId(id);
@@ -28,7 +30,7 @@ export function Cities({placesCount, selectedCity}: CitiesProps) {
       <div className="cities__places-container container">
         <section className="cities__places places">
           <h2 className="visually-hidden">Places</h2>
-          <b className="places__found">{placesCount} places to stay in Amsterdam</b>
+          <b className="places__found">{placesCount} places to stay in {selectedCity || 'everywhere'}</b>
           <PlacesSorting/>
           <div className="cities__places-list places__list tabs__content">
             {filteredOffers.map((offer) => (
