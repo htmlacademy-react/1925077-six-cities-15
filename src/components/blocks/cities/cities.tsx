@@ -6,11 +6,7 @@ import {PlacesSorting} from '../places-sorting/places-sorting';
 import {LeafletMap} from '../leaflet-map/leaflet-map';
 import {START_CITY} from '../../../pages/page-main/const';
 
-interface CitiesProps extends Pick<PageMainProps, 'placesCount'> {
-  selectedCity?: string | null;
-}
-
-export function Cities({selectedCity}: CitiesProps) {
+export function Cities({selectedCity}: PageMainProps) {
   const [hoveredCardId, setHoveredCardId] = useState('');
 
   const placesCount = selectedCity ? OFFERS.filter((offer) => offer.city.name === selectedCity).length : OFFERS.length;
