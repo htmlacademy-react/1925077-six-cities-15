@@ -1,7 +1,6 @@
 import {NAMES_OF_CITIES} from '../consts/common-consts';
 
 export type PageMainProps = {
-  placesCount: number;
   selectedCity: string | null;
 }
 
