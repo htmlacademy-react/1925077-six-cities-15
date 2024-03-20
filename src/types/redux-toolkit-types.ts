@@ -1,5 +1,13 @@
 import {store} from '../redux-toolkit/index';
+import {CityName, OfferCardProps} from './common-types';
 
-export type RootState = ReturnType<typeof store.getState>;
+type initialState = {
+  city: CityName;
+  offers: OfferCardProps[];
+};
 
-export type AppDispatch = typeof store.dispatch;
+type RootState = ReturnType<typeof store.getState>;
+
+type AppDispatch = typeof store.dispatch;
+
+export type {initialState, RootState, AppDispatch};

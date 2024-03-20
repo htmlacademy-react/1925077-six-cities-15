@@ -1,11 +1,8 @@
+import {createAction, createReducer} from '@reduxjs/toolkit';
 import {OFFERS} from '../mock/offers';
-import {CityName, OfferCardProps} from '../types/common-types';
+import {CityName} from '../types/common-types';
+import {initialState} from '../types/redux-toolkit-types';
 import {START_CITY} from '../pages/page-main/const';
-
-type initialState = {
-  city: CityName;
-  offers: OfferCardProps[];
-};
 
 const initialState: initialState = {
   city: START_CITY,
@@ -16,18 +13,13 @@ const enum ActionType {
   ChangeCity = 'OFFERS/ChangeCity',
 }
 
-const changeCity = (city: CityName) => ({
-  payload: city,
-  type: ActionType.ChangeCity
-});
+const changeCity = createAction<CityName>(ActionType.ChangeCity);
 
-function reducer (state: initialState = initialState, action: {payload: unknown; type: ActionType}): initialState {
-  switch (action.type) {
-    case ActionType.ChangeCity:
-      return {...state, city: action.payload as CityName};
-    default:
-      return state;
-  }
-}
+const reducer = createReducer(initialState, (builder) => {
+  builder.addCase(changeCity, (state, action) => {
+    state.city = action.payload;
+    state.offers = OFFERS.filter((offer) => offer.city.name === state.city);// ?
+  });
+});
 
 export {reducer, changeCity};
