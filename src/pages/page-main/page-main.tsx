@@ -1,19 +1,14 @@
-import {useState} from 'react';
 import {Cities} from '../../components/blocks/cities/cities';
 import {Tabs} from '../../components/blocks/tabs/tabs';
-import {START_CITY} from './const';
+import {useAppSelector} from '../../hooks/redux-toolkit-hooks';
 
 function PageMain() {
-  const [activeTab, setActiveTab] = useState<string>(START_CITY);
-
-  const handleCityChange = (city: string) => {
-    setActiveTab(city);
-  };
+  const activeTab = useAppSelector((state) => state.city);
 
   return (
     <main className="page__main page__main--index">
       <h1 className="visually-hidden">Cities</h1>
-      <Tabs activeTab={activeTab} setActiveTab={handleCityChange}/>
+      <Tabs activeTab={activeTab}/>
       <Cities selectedCity={activeTab}/>
     </main>
   );
