@@ -1,9 +1,9 @@
 import {useEffect, useRef} from 'react';
-import {useMap} from './use-leaflet-map';
 import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import {MARKER_CURRENT, MARKER_DEFAULT, MARKER_SIZE} from './const';
+import {MARKER_CURRENT, MARKER_DEFAULT, MARKER_SIZE} from '../../../consts/leaflet-map';
 import {OfferProps} from '../../../types/common-types';
+import {useMap} from '../../../hooks/use-leaflet-map';
 
 interface GenericOffer extends Pick<OfferProps, 'city' | 'id' | 'location'> {}
 
