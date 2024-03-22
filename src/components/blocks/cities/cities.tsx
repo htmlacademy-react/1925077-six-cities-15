@@ -4,12 +4,12 @@ import {PlaceCard} from '../place-card/place-card';
 import {PlacesSorting} from '../places-sorting/places-sorting';
 import {LeafletMap} from '../leaflet-map/leaflet-map';
 import {useAppSelector} from '../../../hooks/redux-hooks';
-import {selectOffers} from '../../../redux/selectors';
+import {offerSelectors} from '../../../redux/slices';
 
 export function Cities({selectedCity}: PageMainProps) {
   const [hoveredCardId, setHoveredCardId] = useState('');
 
-  const offers = useAppSelector(selectOffers);
+  const offers = useAppSelector(offerSelectors.offers);
 
   const filteredOffers = offers.filter((offer) => offer.city.name === selectedCity);
 
