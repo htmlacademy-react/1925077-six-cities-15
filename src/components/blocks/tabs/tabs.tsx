@@ -40,9 +40,9 @@ export function Tabs({activeTab}: TabsProps) {
         <ul className="locations__list tabs__list">
           {CITIES.map((city) => (
             <Tab
-              key={city}
-              city={city}
-              isActive={city === activeTab}
+              key={city.id}
+              city={city.name}
+              isActive={city.name === activeTab}
             />
           ))}
         </ul>

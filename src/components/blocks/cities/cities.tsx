@@ -1,25 +1,22 @@
 import {useState} from 'react';
-import {OFFERS} from '../../../mock/offers';
 import {PageMainProps} from '../../../types/common-types';
 import {PlaceCard} from '../place-card/place-card';
 import {PlacesSorting} from '../places-sorting/places-sorting';
 import {LeafletMap} from '../leaflet-map/leaflet-map';
-import {START_CITY} from '../../../pages/page-main/const';
+import {useAppSelector} from '../../../hooks/redux-hooks';
 
 export function Cities({selectedCity}: PageMainProps) {
   const [hoveredCardId, setHoveredCardId] = useState('');
 
-  const placesCount = selectedCity ? OFFERS.filter((offer) => offer.city.name === selectedCity).length : OFFERS.length;
+  const offers = useAppSelector((state) => state.offers);
+
+  const filteredOffers = offers.filter((offer) => offer.city.name === selectedCity);
+
+  const placesCount = filteredOffers.length;
 
   const handleMouseEnter = (id: string): void => {
     setHoveredCardId(id);
   };
-
-  let filteredOffers = OFFERS.filter((offer) => offer.city.name === START_CITY);
-
-  if (selectedCity) {
-    filteredOffers = OFFERS.filter((offer) => offer.city.name === selectedCity);
-  }
 
   return (
     <div className="cities">
