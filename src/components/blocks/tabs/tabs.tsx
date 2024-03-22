@@ -2,8 +2,8 @@ import classNames from 'classnames';
 import {NAMES_OF_CITIES} from '../../../consts/common-consts';
 import {CityName} from '../../../types/common-types';
 import {Link} from 'react-router-dom';
-import {useAppDispatch} from '../../../hooks/redux-toolkit-hooks';
-import {changeCity} from '../../../redux-toolkit/reducer';
+import {useAppDispatch} from '../../../hooks/redux-hooks';
+import {changeCity} from '../../../redux/reducer';
 
 type TabProps = {
   city: CityName;

@@ -1,4 +1,4 @@
-import {store} from '../redux-toolkit/index';
+import {store} from '../redux/index';
 import {CityName, OfferCardProps} from './common-types';
 
 type initialState = {
