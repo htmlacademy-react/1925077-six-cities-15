@@ -1,9 +1,9 @@
 import {Link} from 'react-router-dom';
-import {OfferCardProps} from '../../../types/common-types';
+import {OfferCard} from '../../../types/common-types';
 import {Rating} from '../rating/rating';
 import classNames from 'classnames';
 
-type PlaceCardProps = Pick<OfferCardProps, 'id' | 'isPremium' | 'previewImage' | 'price' | 'title' | 'rating' | 'type' | 'isFavorite' | 'onMouseEnter' | 'onMouseLeave'> & {
+type PlaceCardProps = Pick<OfferCard, 'id' | 'isPremium' | 'previewImage' | 'price' | 'title' | 'rating' | 'type' | 'isFavorite' | 'onMouseEnter' | 'onMouseLeave'> & {
   className?: string;
 }
 

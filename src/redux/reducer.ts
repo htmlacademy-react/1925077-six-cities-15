@@ -1,6 +1,6 @@
 import {createAction, createReducer} from '@reduxjs/toolkit';
 import {OFFERS} from '../mock/offers';
-import {CityName} from '../types/common-types';
+import {ActionType, CityName} from '../types/common-types';
 import {initialState} from '../types/redux-types';
 import {START_CITY} from '../pages/page-main/const';
 
@@ -9,9 +9,6 @@ const initialState: initialState = {
   offers: OFFERS,
 };
 
-const enum ActionType {
-  ChangeCity = 'OFFERS/ChangeCity',
-}
 
 const changeCity = createAction<CityName>(ActionType.ChangeCity);
 

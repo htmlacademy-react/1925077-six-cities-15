@@ -1,6 +1,6 @@
-import {OfferCardProps} from '../types/common-types';
+import {OfferCard} from '../types/common-types';
 
-export const OFFERS: OfferCardProps[] = [
+export const OFFERS: OfferCard[] = [
   {
     'id': 'd8fa2d9e-e0c9-4144-be48-1787074753c9',
     'title': 'Wood and stone place',

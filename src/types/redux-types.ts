@@ -1,9 +1,9 @@
 import {store} from '../redux/index';
-import {CityName, OfferCardProps} from './common-types';
+import {CityName, OfferCard} from './common-types';
 
 type initialState = {
   city: CityName;
-  offers: OfferCardProps[];
+  offers: OfferCard[];
 };
 
 type RootState = ReturnType<typeof store.getState>;

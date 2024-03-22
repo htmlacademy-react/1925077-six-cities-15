@@ -1,6 +1,6 @@
-import {OfferCardProps} from '../types/common-types';
+import {OfferCard} from '../types/common-types';
 
-export const FAVORITES_OFFERS: OfferCardProps[] = [
+export const FAVORITES_OFFERS: OfferCard[] = [
   {
     'id': 'e87f801c-aaaf-4ec8-ba26-c4146257f4be',
     'title': 'The Pondhouse - A Magical Place',

@@ -41,8 +41,12 @@ export interface Host {
   isPro: boolean;
 }
 
-export interface OfferCardProps extends Omit<OfferProps, 'description' | 'bedrooms' | 'goods' | 'host' | 'images' | 'maxAdults'> {
+export interface OfferCard extends Omit<OfferProps, 'description' | 'bedrooms' | 'goods' | 'host' | 'images' | 'maxAdults'> {
   previewImage: string;
   onMouseEnter?: (id: string) => void;
   onMouseLeave?: () => void;
+}
+
+export const enum ActionType {
+  ChangeCity = 'OFFERS/ChangeCity',
 }

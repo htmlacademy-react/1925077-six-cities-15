@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import {NAMES_OF_CITIES} from '../../../consts/common-consts';
+import {CITIES} from '../../../consts/common-consts';
 import {CityName} from '../../../types/common-types';
 import {Link} from 'react-router-dom';
 import {useAppDispatch} from '../../../hooks/redux-hooks';
@@ -11,7 +11,7 @@ type TabProps = {
 };
 
 interface TabsProps {
-  activeTab: string | null;
+  activeTab: CityName | null;
 }
 
 function Tab(props: TabProps) {
@@ -22,7 +22,11 @@ function Tab(props: TabProps) {
 
   return (
     <li className="locations__item">
-      <Link to='/' className={className} onClick={() => dispatch(changeCity(props.city))}>
+      <Link
+        to='/'
+        className={className}
+        onClick={() => dispatch(changeCity(props.city))}
+      >
         <span>{props.city}</span>
       </Link>
     </li>
@@ -34,7 +38,7 @@ export function Tabs({activeTab}: TabsProps) {
     <div className="tabs">
       <section className="locations container">
         <ul className="locations__list tabs__list">
-          {NAMES_OF_CITIES.map((city) => (
+          {CITIES.map((city) => (
             <Tab
               key={city}
               city={city}
