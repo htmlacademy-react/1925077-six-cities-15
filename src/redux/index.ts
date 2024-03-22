@@ -2,5 +2,7 @@ import {configureStore} from '@reduxjs/toolkit';
 import {offersSlice} from './slices';
 
 export const store = configureStore({
-  reducer: offersSlice.reducer
+  reducer: {
+    [offersSlice.name]: offersSlice.reducer
+  }
 });
