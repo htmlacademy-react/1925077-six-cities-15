@@ -3,7 +3,7 @@ import {CITIES} from '../../../consts/common-consts';
 import {CityName} from '../../../types/common-types';
 import {Link} from 'react-router-dom';
 import {useAppDispatch} from '../../../hooks/redux-hooks';
-import {changeCity} from '../../../redux/reducer';
+import {offerActions} from '../../../redux/slices';
 
 type TabProps = {
   city: CityName;
@@ -25,7 +25,7 @@ function Tab(props: TabProps) {
       <Link
         to='/'
         className={className}
-        onClick={() => dispatch(changeCity(props.city))}
+        onClick={() => dispatch(offerActions.changeCity(props.city))}
       >
         <span>{props.city}</span>
       </Link>

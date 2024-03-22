@@ -1,4 +1,4 @@
-import {createAction, createReducer} from '@reduxjs/toolkit';
+/* import {createAction, createReducer} from '@reduxjs/toolkit';
 import {OFFERS} from '../mock/offers';
 import {ActionType, CityName} from '../types/common-types';
 import {initialState} from '../types/redux-types';
@@ -9,7 +9,6 @@ const initialState: initialState = {
   offers: OFFERS
 };
 
-
 const changeCity = createAction<CityName>(ActionType.ChangeCity);
 
 const reducer = createReducer(initialState, (builder) => {
@@ -18,4 +17,4 @@ const reducer = createReducer(initialState, (builder) => {
   });
 });
 
-export {reducer, changeCity};
+export {reducer, changeCity}; */
