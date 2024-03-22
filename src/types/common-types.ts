@@ -1,10 +1,10 @@
-import {NAMES_OF_CITIES} from '../consts/common-consts';
+import {CITIES} from '../consts/common-consts';
 
 export type PageMainProps = {
   selectedCity: string | null;
 }
 
-export type CityName = (typeof NAMES_OF_CITIES)[number];
+export type CityName = (typeof CITIES)[number]['name'];
 
 export interface OfferProps {
   id: string;
