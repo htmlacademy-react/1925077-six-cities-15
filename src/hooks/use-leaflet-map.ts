@@ -1,6 +1,7 @@
 import {RefObject, useEffect, useRef, useState} from 'react';
 import {Map as LeafletMap, TileLayer} from 'leaflet';
-import {Location} from '../../../types/common-types';
+import {Location} from '../types/common-types';
+
 
 const TILE_LAYER_URL = 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png';
 const ATTRIBUTION = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>';

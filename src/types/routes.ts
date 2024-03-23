@@ -19,5 +19,4 @@ export type AppRouteProps = {
   isReverse?: boolean;
 }
 
-// ? ? ? где и как будет получать статус авторизации, то есть оставлять эту функцию здесь, или перенести в моки
 export const getAuthorizationStatus = () => AuthorizationStatus.Auth;

@@ -1,29 +1,6 @@
-import {OfferCardProps} from '../types/common-types';
+import {OfferCard} from '../types/common-types';
 
-export const OFFERS: OfferCardProps[] = [
-  {
-    'id': 'e87f801c-aaaf-4ec8-ba26-c4146257f4be',
-    'title': 'The Pondhouse - A Magical Place',
-    'type': 'house',
-    'price': 800,
-    'previewImage': 'https://15.design.htmlacademy.pro/static/hotel/4.jpg',
-    'city': {
-      'name': 'Paris',
-      'location': {
-        'latitude': 48.85661,
-        'longitude': 2.351499,
-        'zoom': 13
-      }
-    },
-    'location': {
-      'latitude': 48.868610000000004,
-      'longitude': 2.342499,
-      'zoom': 16
-    },
-    'isFavorite': false,
-    'isPremium': false,
-    'rating': 2.8
-  },
+export const OFFERS: OfferCard[] = [
   {
     'id': 'd8fa2d9e-e0c9-4144-be48-1787074753c9',
     'title': 'Wood and stone place',
@@ -2715,50 +2692,4 @@ export const OFFERS: OfferCardProps[] = [
     'isPremium': true,
     'rating': 3.1
   },
-  {
-    'id': '795fd5ac-6e6f-4fc8-bd7e-1fdbe6943790',
-    'title': 'The Pondhouse - A Magical Place',
-    'type': 'room',
-    'price': 285,
-    'previewImage': 'https://15.design.htmlacademy.pro/static/hotel/8.jpg',
-    'city': {
-      'name': 'Dusseldorf',
-      'location': {
-        'latitude': 51.225402,
-        'longitude': 6.776314,
-        'zoom': 13
-      }
-    },
-    'location': {
-      'latitude': 51.214402,
-      'longitude': 6.764314000000001,
-      'zoom': 16
-    },
-    'isFavorite': false,
-    'isPremium': false,
-    'rating': 1.7
-  },
-  {
-    'id': '12186c08-fddc-4e00-836d-a40779e0488f',
-    'title': 'The Joshua Tree House',
-    'type': 'hotel',
-    'price': 199,
-    'previewImage': 'https://15.design.htmlacademy.pro/static/hotel/8.jpg',
-    'city': {
-      'name': 'Dusseldorf',
-      'location': {
-        'latitude': 51.225402,
-        'longitude': 6.776314,
-        'zoom': 13
-      }
-    },
-    'location': {
-      'latitude': 51.225402,
-      'longitude': 6.784314,
-      'zoom': 16
-    },
-    'isFavorite': false,
-    'isPremium': false,
-    'rating': 2.1
-  }
 ];

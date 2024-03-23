@@ -1,6 +1,6 @@
-import {OfferCardProps} from '../types/common-types';
+import {OfferCard} from '../types/common-types';
 
-export const NEAR_OFFERS: OfferCardProps[] = [
+export const NEAR_OFFERS: OfferCard[] = [
   {
     'id': '97bb24e7-cb11-4fdc-b045-8bf3b8a4c78c',
     'title': 'Canal View Prinsengracht',

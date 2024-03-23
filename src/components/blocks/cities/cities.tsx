@@ -1,34 +1,34 @@
 import {useState} from 'react';
-import {OFFERS} from '../../../mock/offers';
-import {PageMainProps} from '../../../types/common-types';
+import {CityName, OfferCard, PageMainProps} from '../../../types/common-types';
 import {PlaceCard} from '../place-card/place-card';
 import {PlacesSorting} from '../places-sorting/places-sorting';
 import {LeafletMap} from '../leaflet-map/leaflet-map';
-import {START_CITY} from '../../../pages/page-main/const';
+import {useAppSelector} from '../../../hooks/redux-hooks';
+import {offerSelectors} from '../../../redux/slices';
 
-interface CitiesProps extends Pick<PageMainProps, 'placesCount'> {
-  selectedCity?: string | null;
-}
-
-export function Cities({placesCount, selectedCity}: CitiesProps) {
+export function Cities({selectedCity}: PageMainProps) {
   const [hoveredCardId, setHoveredCardId] = useState('');
+  const offers = useAppSelector(offerSelectors.offers);
 
-  const handleMouseEnter = (id: string): void => {
-    setHoveredCardId(id);
-  };
+  const offersByCity: Partial<Record<CityName, OfferCard[]>> = {};
 
-  let filteredOffers = OFFERS.filter((offer) => offer.city.name === START_CITY);
+  offers.forEach((offer) => {
+    if (!offersByCity[offer.city.name]) {
+      offersByCity[offer.city.name] = [];
+    }
+    offersByCity[offer.city.name]!.push(offer);
+  });
 
-  if (selectedCity) {
-    filteredOffers = OFFERS.filter((offer) => offer.city.name === selectedCity);
-  }
+  const filteredOffers = offersByCity[selectedCity] ?? [];
+
+  const handleMouseEnter = (id: string): void => setHoveredCardId(id);
 
   return (
     <div className="cities">
       <div className="cities__places-container container">
         <section className="cities__places places">
           <h2 className="visually-hidden">Places</h2>
-          <b className="places__found">{placesCount} places to stay in Amsterdam</b>
+          <b className="places__found">{filteredOffers.length} place{filteredOffers.length > 1 && 's'} to stay in {selectedCity || 'everywhere'}</b>
           <PlacesSorting/>
           <div className="cities__places-list places__list tabs__content">
             {filteredOffers.map((offer) => (

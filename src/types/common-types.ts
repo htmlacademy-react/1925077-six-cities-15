@@ -1,11 +1,10 @@
-import {NAMES_OF_CITIES} from '../consts/common-consts';
+import {CITIES} from '../consts/common-consts';
 
 export type PageMainProps = {
-  placesCount: number;
-  selectedCity: string | null;
+  selectedCity: CityName;
 }
 
-export type CityName = (typeof NAMES_OF_CITIES)[number];
+export type CityName = (typeof CITIES)[number]['name'];
 
 export interface OfferProps {
   id: string;
@@ -42,8 +41,12 @@ export interface Host {
   isPro: boolean;
 }
 
-export interface OfferCardProps extends Omit<OfferProps, 'description' | 'bedrooms' | 'goods' | 'host' | 'images' | 'maxAdults'> {
+export interface OfferCard extends Omit<OfferProps, 'description' | 'bedrooms' | 'goods' | 'host' | 'images' | 'maxAdults'> {
   previewImage: string;
   onMouseEnter?: (id: string) => void;
   onMouseLeave?: () => void;
+}
+
+export const enum ActionType {
+  ChangeCity = 'OFFERS/ChangeCity',
 }
