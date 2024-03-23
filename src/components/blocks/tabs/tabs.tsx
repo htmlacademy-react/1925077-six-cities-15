@@ -2,8 +2,6 @@ import classNames from 'classnames';
 import {CITIES} from '../../../consts/common-consts';
 import {CityName} from '../../../types/common-types';
 import {NavLink} from 'react-router-dom';
-import {useActionCreators} from '../../../hooks/redux-hooks';
-import {offerActions} from '../../../redux/slices';
 
 type TabProps = {
   city: CityName;
@@ -15,8 +13,6 @@ interface TabsProps {
 }
 
 function Tab(props: TabProps) {
-  const {changeCity: changeTab} = useActionCreators(offerActions);
-
   const className = classNames('locations__item-link tabs__item', {
     'tabs__item--active': props.isActive,
   });
@@ -26,7 +22,6 @@ function Tab(props: TabProps) {
       <NavLink
         to={`/${props.city}`}
         className={className}
-        onClick={() => changeTab(props.city)}
       >
         <span>{props.city}</span>
       </NavLink>

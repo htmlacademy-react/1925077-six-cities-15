@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import {PageMainProps} from '../../../types/common-types';
+import {CityName, OfferCard, PageMainProps} from '../../../types/common-types';
 import {PlaceCard} from '../place-card/place-card';
 import {PlacesSorting} from '../places-sorting/places-sorting';
 import {LeafletMap} from '../leaflet-map/leaflet-map';
@@ -8,8 +8,18 @@ import {offerSelectors} from '../../../redux/slices';
 
 export function Cities({selectedCity}: PageMainProps) {
   const [hoveredCardId, setHoveredCardId] = useState('');
+  const offers = useAppSelector(offerSelectors.offers);
 
-  const filteredOffers = useAppSelector(offerSelectors.cityOffers);
+  const offersByCity: Partial<Record<CityName, OfferCard[]>> = {};
+
+  offers.forEach((offer) => {
+    if (!offersByCity[offer.city.name]) {
+      offersByCity[offer.city.name] = [];
+    }
+    offersByCity[offer.city.name]!.push(offer);
+  });
+
+  const filteredOffers = offersByCity[selectedCity] || [];
 
   const handleMouseEnter = (id: string): void => setHoveredCardId(id);
 
