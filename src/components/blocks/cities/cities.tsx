@@ -19,7 +19,7 @@ export function Cities({selectedCity}: PageMainProps) {
     offersByCity[offer.city.name]!.push(offer);
   });
 
-  const filteredOffers = offersByCity[selectedCity] || [];
+  const filteredOffers = offersByCity[selectedCity] ?? [];
 
   const handleMouseEnter = (id: string): void => setHoveredCardId(id);
 

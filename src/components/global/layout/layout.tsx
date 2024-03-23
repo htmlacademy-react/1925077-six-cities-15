@@ -10,21 +10,27 @@ const getLayoutStyle = (pathname: AppRoute) => {
   let isFooter = false;
   let title = '6 cities';
 
-  if (pathname === AppRoute.Main) {
-    rootClassName = 'page--gray page--main';
-    isActiveLogo = true;
-    title = '6 cities';
-  } else if (pathname === AppRoute.FavoritesEmpty) {
-    rootClassName = 'page--favorites-empty';
-    isFooter = true;
-    title += '. Favorites';
-  } else if (pathname === AppRoute.Login) {
-    rootClassName = 'page--gray page--login';
-    isNav = false;
-    title += '. Login';
-  } else if (pathname === AppRoute.Favorites) {
-    isFooter = true;
-    title += '. Favorites';
+  switch (pathname) {
+    case AppRoute.Main:
+      rootClassName = 'page--gray page--main';
+      isActiveLogo = true;
+      title = '6 cities';
+      break;
+    case AppRoute.FavoritesEmpty:
+      rootClassName = 'page--favorites-empty';
+      isFooter = true;
+      title += '. Favorites';
+      break;
+    case AppRoute.Login:
+      rootClassName = 'page--gray page--login';
+      isNav = false;
+      title += '. Login';
+      break;
+    case AppRoute.Favorites:
+      isFooter = true;
+      title += '. Favorites';
+      break;
+    default:
   }
   return {
     rootClassName,
