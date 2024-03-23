@@ -18,7 +18,7 @@ export function Cities({selectedCity}: PageMainProps) {
       <div className="cities__places-container container">
         <section className="cities__places places">
           <h2 className="visually-hidden">Places</h2>
-          <b className="places__found">{filteredOffers.length} places to stay in {selectedCity || 'everywhere'}</b>
+          <b className="places__found">{filteredOffers.length} place{filteredOffers.length > 1 && 's'} to stay in {selectedCity || 'everywhere'}</b>
           <PlacesSorting/>
           <div className="cities__places-list places__list tabs__content">
             {filteredOffers.map((offer) => (

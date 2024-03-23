@@ -1,7 +1,7 @@
 import {CITIES} from '../consts/common-consts';
 
 export type PageMainProps = {
-  selectedCity: string | null;
+  selectedCity: CityName;
 }
 
 export type CityName = (typeof CITIES)[number]['name'];

@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import {CITIES} from '../../../consts/common-consts';
 import {CityName} from '../../../types/common-types';
-import {Link} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import {useActionCreators} from '../../../hooks/redux-hooks';
 import {offerActions} from '../../../redux/slices';
 
@@ -11,7 +11,7 @@ type TabProps = {
 };
 
 interface TabsProps {
-  activeTab: CityName | null;
+  activeTab: CityName;
 }
 
 function Tab(props: TabProps) {
@@ -23,13 +23,13 @@ function Tab(props: TabProps) {
 
   return (
     <li className="locations__item">
-      <Link
-        to='/'
+      <NavLink
+        to={`/${props.city}`}
         className={className}
         onClick={() => changeTab(props.city)}
       >
         <span>{props.city}</span>
-      </Link>
+      </NavLink>
     </li>
   );
 }
