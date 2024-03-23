@@ -9,22 +9,16 @@ import {offerSelectors} from '../../../redux/slices';
 export function Cities({selectedCity}: PageMainProps) {
   const [hoveredCardId, setHoveredCardId] = useState('');
 
-  const offers = useAppSelector(offerSelectors.offers);
+  const filteredOffers = useAppSelector(offerSelectors.cityOffers);
 
-  const filteredOffers = offers.filter((offer) => offer.city.name === selectedCity);
-
-  const placesCount = filteredOffers.length;
-
-  const handleMouseEnter = (id: string): void => {
-    setHoveredCardId(id);
-  };
+  const handleMouseEnter = (id: string): void => setHoveredCardId(id);
 
   return (
     <div className="cities">
       <div className="cities__places-container container">
         <section className="cities__places places">
           <h2 className="visually-hidden">Places</h2>
-          <b className="places__found">{placesCount} places to stay in {selectedCity || 'everywhere'}</b>
+          <b className="places__found">{filteredOffers.length} places to stay in {selectedCity || 'everywhere'}</b>
           <PlacesSorting/>
           <div className="cities__places-list places__list tabs__content">
             {filteredOffers.map((offer) => (
