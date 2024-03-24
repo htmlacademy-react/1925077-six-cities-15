@@ -4,11 +4,12 @@ import {PlacesSorting} from '../places-sorting/places-sorting';
 import {LeafletMap} from '../leaflet-map/leaflet-map';
 import {useActionCreators, useAppSelector} from '../../../hooks/redux-hooks';
 import {offerActions, offerSelectors} from '../../../redux/slices';
+import {SortOption} from '../../../types/common-types';
+import {useState} from 'react';
 
 export function Cities({selectedCity}: PageMainProps) {
   const offers = useAppSelector(offerSelectors.offers);
   const {setHoveredCardId} = useActionCreators(offerActions);
-
   const offersByCity: Partial<Record<CityName, OfferCard[]>> = {};
 
   offers.forEach((offer) => {
@@ -19,8 +20,23 @@ export function Cities({selectedCity}: PageMainProps) {
   });
 
   const filteredOffers = offersByCity[selectedCity] ?? [];
-
   const handleMouseEnter = (id: string) => setHoveredCardId(id);
+  const [activeSort, setActiveSort] = useState(SortOption.Popular);
+
+  const sortOffers = (offersForSorting: OfferCard[]) => {
+    switch (activeSort) {
+      case SortOption.PriceLowToHigh:
+        return [...offersForSorting].sort((a, b) => a.price - b.price);
+      case SortOption.PriceHighToLow:
+        return [...offersForSorting].sort((a, b) => b.price - a.price);
+      case SortOption.TopRatedFirst:
+        return [...offersForSorting].sort((a, b) => b.rating - a.rating);
+      default:
+        return offers;
+    }
+  };
+
+  const sortedOffers = sortOffers(filteredOffers);
 
   return (
     <div className="cities">
@@ -28,9 +44,9 @@ export function Cities({selectedCity}: PageMainProps) {
         <section className="cities__places places">
           <h2 className="visually-hidden">Places</h2>
           <b className="places__found">{filteredOffers.length} place{filteredOffers.length > 1 && 's'} to stay in {selectedCity || 'everywhere'}</b>
-          <PlacesSorting/>
+          <PlacesSorting current={activeSort} setter={setActiveSort} />
           <div className="cities__places-list places__list tabs__content">
-            {filteredOffers.map((offer) => (
+            {sortedOffers.map((offer) => (
               <PlaceCard
                 key={offer.id}
                 {...offer}
