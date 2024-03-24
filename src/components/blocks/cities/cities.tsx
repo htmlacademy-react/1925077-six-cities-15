@@ -1,14 +1,13 @@
-import {useState} from 'react';
 import {CityName, OfferCard, PageMainProps} from '../../../types/common-types';
 import {PlaceCard} from '../place-card/place-card';
 import {PlacesSorting} from '../places-sorting/places-sorting';
 import {LeafletMap} from '../leaflet-map/leaflet-map';
-import {useAppSelector} from '../../../hooks/redux-hooks';
-import {offerSelectors} from '../../../redux/slices';
+import {useActionCreators, useAppSelector} from '../../../hooks/redux-hooks';
+import {offerActions, offerSelectors} from '../../../redux/slices';
 
 export function Cities({selectedCity}: PageMainProps) {
-  const [hoveredCardId, setHoveredCardId] = useState('');
   const offers = useAppSelector(offerSelectors.offers);
+  const {setHoveredCardId} = useActionCreators(offerActions);
 
   const offersByCity: Partial<Record<CityName, OfferCard[]>> = {};
 
@@ -21,7 +20,7 @@ export function Cities({selectedCity}: PageMainProps) {
 
   const filteredOffers = offersByCity[selectedCity] ?? [];
 
-  const handleMouseEnter = (id: string): void => setHoveredCardId(id);
+  const handleMouseEnter = (id: string) => setHoveredCardId(id);
 
   return (
     <div className="cities">
@@ -35,8 +34,8 @@ export function Cities({selectedCity}: PageMainProps) {
               <PlaceCard
                 key={offer.id}
                 {...offer}
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={() => setHoveredCardId('')}
+                onMouseEnter={() => handleMouseEnter(offer.id)}
+                onMouseLeave={() => setHoveredCardId(undefined)}
                 className="cities"
               />
             ))}
@@ -45,7 +44,6 @@ export function Cities({selectedCity}: PageMainProps) {
         <div className="cities__right-section">
           <LeafletMap
             offers={filteredOffers}
-            activePoint={hoveredCardId}
             className="cities"
           />
         </div>

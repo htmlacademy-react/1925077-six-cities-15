@@ -4,12 +4,13 @@ import 'leaflet/dist/leaflet.css';
 import {DEFAULT_ZOOM, MARKER_CURRENT, MARKER_DEFAULT, MARKER_SIZE} from '../../../consts/leaflet-map-consts';
 import {OfferProps} from '../../../types/common-types';
 import {useMap} from '../../../hooks/use-leaflet-map';
+import {useAppSelector} from '../../../hooks/redux-hooks';
+import {offerSelectors} from '../../../redux/slices';
 
 interface GenericOffer extends Pick<OfferProps, 'city' | 'id' | 'location'> {}
 
 interface LeafletProps {
   offers: GenericOffer[];
-  activePoint?: string;
   className?: string;
 }
 
@@ -23,11 +24,12 @@ const currentCustomIcon = leaflet.icon({
   ...MARKER_SIZE,
 });
 
-export function LeafletMap({offers, activePoint, className}: LeafletProps) {
+export function LeafletMap({offers, className}: LeafletProps) {
   const mapRef = useRef(null);
   const location = offers[0].city.location;
   const map = useMap(mapRef, location);
   const points = offers.map((offer) => offer.location);
+  const activePoint = useAppSelector(offerSelectors.activeId);
 
   useEffect(() => {
     if (map) {
