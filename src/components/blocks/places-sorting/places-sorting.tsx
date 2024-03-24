@@ -20,8 +20,22 @@ export function PlacesSorting({current, setter}: PlacesSortingProps) {
           off();
         }
       };
+
+      const handleClickOutside = (evt: MouseEvent) => {
+        const target = evt.target as HTMLElement;
+        const sortingElement = document.querySelector('.places__sorting');
+
+        if (sortingElement && !sortingElement.contains(target)) {
+          off();
+        }
+      };
+      document.addEventListener('click', handleClickOutside);
       document.addEventListener('keydown', onEscKeyDown);
-      return () => document.removeEventListener('keydown', onEscKeyDown);
+
+      return () => {
+        document.removeEventListener('click', handleClickOutside);
+        document.removeEventListener('keydown', onEscKeyDown);
+      };
     }
   }, [isOn, off]);
 
@@ -31,7 +45,7 @@ export function PlacesSorting({current, setter}: PlacesSortingProps) {
     <form className="places__sorting" action="#" method="get" onClick={toggle}>
       <span className="places__sorting-caption">Sort by</span>
       <span className="places__sorting-type" tabIndex={0}>
-      Popular
+        {selectedOption}
         <svg className="places__sorting-arrow" width="7" height="4">
           <use xlinkHref="#icon-arrow-select"></use>
         </svg>
