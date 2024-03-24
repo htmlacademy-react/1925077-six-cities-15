@@ -1,4 +1,4 @@
-import {CITIES, SORT_OPTIONS} from '../consts/common-consts';
+import {CITIES} from '../consts/common-consts';
 
 export type PageMainProps = {
   selectedCity: CityName;

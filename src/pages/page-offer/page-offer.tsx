@@ -148,7 +148,7 @@ function PageOffer() {
           </div>
         </div>
 
-        <LeafletMap className='offer' offers={NEAR_OFFERS} activePoint={NEAR_OFFERS[0].id}/>
+        <LeafletMap className='offer' offers={NEAR_OFFERS}/>
 
       </section>
       <div className="container">
