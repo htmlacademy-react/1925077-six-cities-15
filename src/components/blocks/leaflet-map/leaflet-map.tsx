@@ -1,7 +1,7 @@
 import {useEffect, useRef} from 'react';
 import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import {MARKER_CURRENT, MARKER_DEFAULT, MARKER_SIZE} from '../../../consts/leaflet-map';
+import {DEFAULT_ZOOM, MARKER_CURRENT, MARKER_DEFAULT, MARKER_SIZE} from '../../../consts/leaflet-map-consts';
 import {OfferProps} from '../../../types/common-types';
 import {useMap} from '../../../hooks/use-leaflet-map';
 
@@ -53,7 +53,7 @@ export function LeafletMap({offers, activePoint, className}: LeafletProps) {
 
   useEffect(() => {
     if (map && location) {
-      map.setView([location.latitude, location.longitude], location.zoom);
+      map.setView([location.latitude, location.longitude], DEFAULT_ZOOM);
     }
   }, [location, map, offers]);
 
