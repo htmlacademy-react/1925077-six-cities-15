@@ -1,6 +1,34 @@
-export function PlacesSorting() {
+import {useEffect} from 'react';
+import {useBoolean} from '../../../hooks/use-boolean';
+import {SortOption} from '../../../types/common-types';
+import {SORT_OPTIONS} from '../../../consts/common-consts';
+import classNames from 'classnames';
+
+interface PlacesSortingProps {
+  current: SortOption;
+  setter: (option: SortOption) => void;
+}
+
+export function PlacesSorting({current, setter}: PlacesSortingProps) {
+  const {isOn, off, toggle} = useBoolean(false);
+
+  useEffect(() => {
+    if (isOn) {
+      const onEscKeyDown = (evt: KeyboardEvent) => {
+        if (evt.key === 'Escape') {
+          evt.preventDefault();
+          off();
+        }
+      };
+      document.addEventListener('keydown', onEscKeyDown);
+      return () => document.removeEventListener('keydown', onEscKeyDown);
+    }
+  }, [isOn, off]);
+
+  const selectedOption = SORT_OPTIONS[current];
+
   return (
-    <form className="places__sorting" action="#" method="get">
+    <form className="places__sorting" action="#" method="get" onClick={toggle}>
       <span className="places__sorting-caption">Sort by</span>
       <span className="places__sorting-type" tabIndex={0}>
       Popular
@@ -8,11 +36,19 @@ export function PlacesSorting() {
           <use xlinkHref="#icon-arrow-select"></use>
         </svg>
       </span>
-      <ul className="places__options places__options--custom places__options--opened">
-        <li className="places__option places__option--active" tabIndex={0}>Popular</li>
-        <li className="places__option" tabIndex={0}>Price: low to high</li>
-        <li className="places__option" tabIndex={0}>Price: high to low</li>
-        <li className="places__option" tabIndex={0}>Top rated first</li>
+      <ul
+        className={classNames('places__options', 'places__options--custom', { 'places__options--opened': isOn })}
+      >
+        {SORT_OPTIONS.map((option, index) => (
+          <li
+            key={option}
+            className={`places__option ${option === selectedOption ? 'places__option--active' : ''}`}
+            tabIndex={0}
+            onClick={() => setter(index)}
+          >
+            {option}
+          </li>
+        ))}
       </ul>
     </form>
   );
