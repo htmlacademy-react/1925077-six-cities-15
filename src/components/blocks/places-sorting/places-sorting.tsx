@@ -45,7 +45,7 @@ export function PlacesSorting({current, setter}: PlacesSortingProps) {
     <form className="places__sorting" action="#" method="get" onClick={toggle}>
       <span className="places__sorting-caption">Sort by</span>
       <span className="places__sorting-type" tabIndex={0}>
-        {selectedOption}
+        &nbsp;{selectedOption}
         <svg className="places__sorting-arrow" width="7" height="4">
           <use xlinkHref="#icon-arrow-select"></use>
         </svg>

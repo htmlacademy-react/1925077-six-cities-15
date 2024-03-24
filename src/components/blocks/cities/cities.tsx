@@ -23,20 +23,17 @@ export function Cities({selectedCity}: PageMainProps) {
   const handleMouseEnter = (id: string) => setHoveredCardId(id);
   const [activeSort, setActiveSort] = useState(SortOption.Popular);
 
-  const sortOffers = (offersForSorting: OfferCard[]) => {
-    switch (activeSort) {
-      case SortOption.PriceLowToHigh:
-        return [...offersForSorting].sort((a, b) => a.price - b.price);
-      case SortOption.PriceHighToLow:
-        return [...offersForSorting].sort((a, b) => b.price - a.price);
-      case SortOption.TopRatedFirst:
-        return [...offersForSorting].sort((a, b) => b.rating - a.rating);
-      default:
-        return offers;
-    }
-  };
+  let sortedOffers = filteredOffers;
 
-  const sortedOffers = sortOffers(filteredOffers);
+  if (activeSort === SortOption.PriceLowToHigh) {
+    sortedOffers = [...filteredOffers].sort((a, b) => a.price - b.price);
+  }
+  if (activeSort === SortOption.PriceHighToLow) {
+    sortedOffers = [...filteredOffers].sort((a, b) => b.price - a.price);
+  }
+  if (activeSort === SortOption.TopRatedFirst) {
+    sortedOffers = [...filteredOffers].sort((a, b) => b.rating - a.rating);
+  }
 
   return (
     <div className="cities">
