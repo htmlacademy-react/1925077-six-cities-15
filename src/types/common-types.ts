@@ -50,3 +50,10 @@ export interface OfferCard extends Omit<OfferProps, 'description' | 'bedrooms' |
 export const enum ActionType {
   ChangeCity = 'OFFERS/ChangeCity',
 }
+
+export const enum SortOption {
+  Popular = 0,
+  PriceLowToHigh = 1,
+  PriceHighToLow = 2,
+  TopRatedFirst = 3
+}
