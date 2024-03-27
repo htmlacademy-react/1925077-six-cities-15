@@ -3,11 +3,13 @@ import {PlaceCard} from '../place-card/place-card';
 import {PlacesSorting} from '../places-sorting/places-sorting';
 import {LeafletMap} from '../leaflet-map/leaflet-map';
 import {useActionCreators, useAppSelector} from '../../../hooks/redux-hooks';
-import {offerActions, offerSelectors} from '../../../redux/slices';
+import {offerActions, offerSelectors} from '../../../redux/slices/offers-slice';
 import {SortOption} from '../../../types/common-types';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
+import {RequestStatus} from '../../../types/redux-types';
 
 export function Cities({selectedCity}: PageMainProps) {
+
   const offers = useAppSelector(offerSelectors.offers);
   const {setHoveredCardId} = useActionCreators(offerActions);
   const offersByCity: Partial<Record<CityName, OfferCard[]>> = {};
@@ -20,6 +22,15 @@ export function Cities({selectedCity}: PageMainProps) {
   });
 
   const filteredOffers = offersByCity[selectedCity] ?? [];
+  const status = useAppSelector(offerSelectors.offerStatus);
+  const {fetchAllOffers} = useActionCreators(offerActions);
+
+  useEffect(() => {
+    if (status === RequestStatus.Idle) {
+      fetchAllOffers();
+    }
+  }, [status, fetchAllOffers]);
+
   const handleMouseEnter = (id: string) => setHoveredCardId(id);
   const [activeSort, setActiveSort] = useState(SortOption.Popular);
 
@@ -55,10 +66,11 @@ export function Cities({selectedCity}: PageMainProps) {
           </div>
         </section>
         <div className="cities__right-section">
+          {/* {filteredOffers &&
           <LeafletMap
             offers={filteredOffers}
             className="cities"
-          />
+          />} */}
         </div>
       </div>
     </div>

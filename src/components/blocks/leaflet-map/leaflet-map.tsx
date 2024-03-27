@@ -5,7 +5,7 @@ import {DEFAULT_ZOOM, MARKER_CURRENT, MARKER_DEFAULT, MARKER_SIZE} from '../../.
 import {OfferProps} from '../../../types/common-types';
 import {useMap} from '../../../hooks/use-leaflet-map';
 import {useAppSelector} from '../../../hooks/redux-hooks';
-import {offerSelectors} from '../../../redux/slices';
+import {offerSelectors} from '../../../redux/slices/offers-slice';
 
 interface GenericOffer extends Pick<OfferProps, 'city' | 'id' | 'location'> {}
 
