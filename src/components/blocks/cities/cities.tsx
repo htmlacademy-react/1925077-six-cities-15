@@ -49,6 +49,10 @@ export function Cities({selectedCity}: PageMainProps) {
 
   const showMap = filteredOffers.length > 0;
 
+  // if (status === RequestStatus.Loading) {
+  //   return <Spinner className={'cities__places-container container'}/>;
+  // }
+
   return (
     <div className="cities">
       <div className="cities__places-container container">
