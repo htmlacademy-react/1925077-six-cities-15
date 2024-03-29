@@ -1,4 +1,4 @@
-import {CityName, OfferCard, PageMainProps} from '../../../types/common-types';
+import {PageMainProps} from '../../../types/common-types';
 import {PlaceCard} from '../place-card/place-card';
 import {PlacesSorting} from '../places-sorting/places-sorting';
 import {LeafletMap} from '../leaflet-map/leaflet-map';
@@ -8,34 +8,23 @@ import {SortOption} from '../../../types/common-types';
 import {useEffect, useState} from 'react';
 import {RequestStatus} from '../../../types/redux-types';
 import {Spinner} from '../spinner/spinner';
+import {useFilterOffers} from '../../../hooks/use-filter-offers';
 
 export function Cities({selectedCity}: PageMainProps) {
-
   const offers = useAppSelector(offerSelectors.offers);
   const {setHoveredCardId} = useActionCreators(offerActions);
-  const offersByCity: Partial<Record<CityName, OfferCard[]>> = {};
-
-  offers.forEach((offer) => {
-    if (!offersByCity[offer.city.name]) {
-      offersByCity[offer.city.name] = [];
-    }
-    offersByCity[offer.city.name]!.push(offer);
-  });
-
-  const filteredOffers = offersByCity[selectedCity] ?? [];
+  const filteredOffers = useFilterOffers(offers, selectedCity);
   const status = useAppSelector(offerSelectors.offerStatus);
   const {fetchAllOffers} = useActionCreators(offerActions);
+  const handleMouseEnter = (id: string) => setHoveredCardId(id);
+  const [activeSort, setActiveSort] = useState(SortOption.Popular);
+  let sortedOffers = filteredOffers;
 
   useEffect(() => {
     if (status === RequestStatus.Idle) {
       fetchAllOffers();
     }
   }, [status, fetchAllOffers]);
-
-  const handleMouseEnter = (id: string) => setHoveredCardId(id);
-  const [activeSort, setActiveSort] = useState(SortOption.Popular);
-
-  let sortedOffers = filteredOffers;
 
   if (activeSort === SortOption.PriceLowToHigh) {
     sortedOffers = [...filteredOffers].sort((a, b) => a.price - b.price);
