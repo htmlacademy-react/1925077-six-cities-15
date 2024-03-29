@@ -7,6 +7,7 @@ import {offerActions, offerSelectors} from '../../../redux/slices/offers-slice';
 import {SortOption} from '../../../types/common-types';
 import {useEffect, useState} from 'react';
 import {RequestStatus} from '../../../types/redux-types';
+import {Spinner} from '../spinner/spinner';
 
 export function Cities({selectedCity}: PageMainProps) {
 
@@ -46,6 +47,8 @@ export function Cities({selectedCity}: PageMainProps) {
     sortedOffers = [...filteredOffers].sort((a, b) => b.rating - a.rating);
   }
 
+  const showMap = filteredOffers.length > 0;
+
   return (
     <div className="cities">
       <div className="cities__places-container container">
@@ -66,11 +69,11 @@ export function Cities({selectedCity}: PageMainProps) {
           </div>
         </section>
         <div className="cities__right-section">
-          {/* {filteredOffers &&
+          {showMap &&
           <LeafletMap
             offers={filteredOffers}
             className="cities"
-          />} */}
+          />}
         </div>
       </div>
     </div>
