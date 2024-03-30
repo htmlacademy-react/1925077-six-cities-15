@@ -1,8 +1,6 @@
 // import {useParams} from 'react-router-dom';
-import {FormReview} from '../../components/blocks/form-review/form-review';
 import {LeafletMap} from '../../components/blocks/leaflet-map/leaflet-map';
 import {PlaceCard} from '../../components/blocks/place-card/place-card';
-import {Review} from '../../components/blocks/review/review';
 // import {useActionCreators, useAppSelector} from '../../hooks/redux-hooks';
 import {useDocumentTitle} from '../../hooks/use-document-title';
 import {NEAR_OFFERS} from '../../mock/near-offers';
@@ -11,6 +9,7 @@ import {REVIEWS} from '../../mock/reviews';
 // import {fetchOneOffer, fetchNearestOffers} from '../../redux/thunks/offers-thunk';
 import {OfferGallery} from '../../components/blocks/offer-gallery/offer-gallery';
 import {OfferInfo} from '../../components/blocks/offer-info/offer-info';
+import {Reviews} from '../../components/blocks/reviews/reviews';
 
 function PageOffer() {
   useDocumentTitle('6 cities. Offer');
@@ -24,27 +23,10 @@ function PageOffer() {
 
         <div className="offer__container container">
           <div className="offer__wrapper">
+
             <OfferInfo />
 
-            <section className="offer__reviews reviews">
-              <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{REVIEWS.length}</span></h2>
-              <ul className="reviews__list">
-
-                {REVIEWS.map((review) => (
-                  <Review
-                    key={review.id}
-                    date={review.date}
-                    user={review.user}
-                    comment={review.comment}
-                    rating={review.rating}
-                  />
-                ))}
-
-              </ul>
-
-              <FormReview/>
-
-            </section>
+            <Reviews reviews={REVIEWS}/>
           </div>
         </div>
 

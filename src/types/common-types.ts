@@ -57,3 +57,17 @@ export const enum SortOption {
   PriceHighToLow = 2,
   TopRatedFirst = 3
 }
+
+export interface Review {
+  id: string;
+  date: string;
+  user: User;
+  comment: string;
+  rating: number;
+}
+
+export interface User {
+  name: string;
+  avatarUrl: string;
+  isPro: boolean;
+}
