@@ -1,6 +1,6 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import type { AxiosInstance } from 'axios';
-import {OfferCard} from '../../types/common-types';
+import {FullOffer, OfferCard} from '../../types/common-types';
 import {Endpoint} from '../../consts/common-consts';
 
 

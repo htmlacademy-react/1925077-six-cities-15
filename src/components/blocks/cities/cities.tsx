@@ -9,7 +9,7 @@ import {useState} from 'react';
 import {RequestStatus} from '../../../types/redux-types';
 import {Spinner} from '../spinner/spinner';
 import {useFilterOffers} from '../../../hooks/use-filter-offers';
-import {useFetchOffers} from './use-fetch-offers';
+import {useFetchOffers} from '../../../hooks/use-fetch-offers';
 
 export function Cities({selectedCity}: PageMainProps) {
   const offers = useAppSelector(offerSelectors.offers);
