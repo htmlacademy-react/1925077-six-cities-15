@@ -1,11 +1,9 @@
 import {createSlice} from '@reduxjs/toolkit';
-// import {mockOffers} from '../../mock/offers';
 import {RequestStatus, initialState} from '../../types/redux-types';
 import {fetchAllOffers} from '../thunks/offers-thunk';
 
 const initialState: initialState = {
   offers: [],
-  // offers: mockOffers,
   hoveredCardId: undefined,
   status: RequestStatus.Idle,
 };
