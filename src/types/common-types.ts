@@ -6,7 +6,7 @@ export type PageMainProps = {
 
 export type CityName = (typeof CITIES)[number]['name'];
 
-export interface OfferProps {
+export interface FullOffer {
   id: string;
   title: string;
   type: string;
@@ -41,7 +41,7 @@ export interface Host {
   isPro: boolean;
 }
 
-export interface OfferCard extends Omit<OfferProps, 'description' | 'bedrooms' | 'goods' | 'host' | 'images' | 'maxAdults'> {
+export interface OfferCard extends Omit<FullOffer, 'description' | 'bedrooms' | 'goods' | 'host' | 'images' | 'maxAdults'> {
   previewImage: string;
   onMouseEnter?: (id: string) => void;
   onMouseLeave?: () => void;
@@ -56,4 +56,18 @@ export const enum SortOption {
   PriceLowToHigh = 1,
   PriceHighToLow = 2,
   TopRatedFirst = 3
+}
+
+export interface Review {
+  id: string;
+  date: string;
+  user: User;
+  comment: string;
+  rating: number;
+}
+
+export interface User {
+  name: string;
+  avatarUrl: string;
+  isPro: boolean;
 }

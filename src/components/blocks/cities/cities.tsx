@@ -1,38 +1,37 @@
-import {CityName, OfferCard, PageMainProps} from '../../../types/common-types';
+import {PageMainProps} from '../../../types/common-types';
 import {PlaceCard} from '../place-card/place-card';
 import {PlacesSorting} from '../places-sorting/places-sorting';
 import {LeafletMap} from '../leaflet-map/leaflet-map';
 import {useActionCreators, useAppSelector} from '../../../hooks/redux-hooks';
-import {offerActions, offerSelectors} from '../../../redux/slices';
+import {offerActions, offerSelectors} from '../../../redux/slices/offers-slice';
 import {SortOption} from '../../../types/common-types';
 import {useState} from 'react';
+import {RequestStatus} from '../../../types/redux-types';
+import {Spinner} from '../spinner/spinner';
+import {useFilterOffers} from '../../../hooks/use-filter-offers';
+import {useFetchOffers} from '../../../hooks/use-fetch-offers';
 
 export function Cities({selectedCity}: PageMainProps) {
   const offers = useAppSelector(offerSelectors.offers);
   const {setHoveredCardId} = useActionCreators(offerActions);
-  const offersByCity: Partial<Record<CityName, OfferCard[]>> = {};
-
-  offers.forEach((offer) => {
-    if (!offersByCity[offer.city.name]) {
-      offersByCity[offer.city.name] = [];
-    }
-    offersByCity[offer.city.name]!.push(offer);
-  });
-
-  const filteredOffers = offersByCity[selectedCity] ?? [];
+  const filteredOffers = useFilterOffers(offers, selectedCity);
   const handleMouseEnter = (id: string) => setHoveredCardId(id);
   const [activeSort, setActiveSort] = useState(SortOption.Popular);
-
   let sortedOffers = filteredOffers;
+  const showMap = filteredOffers.length > 0;
+  const status = useAppSelector(offerSelectors.offerStatus);
+  useFetchOffers(status);
 
   if (activeSort === SortOption.PriceLowToHigh) {
     sortedOffers = [...filteredOffers].sort((a, b) => a.price - b.price);
-  }
-  if (activeSort === SortOption.PriceHighToLow) {
+  } else if (activeSort === SortOption.PriceHighToLow) {
     sortedOffers = [...filteredOffers].sort((a, b) => b.price - a.price);
-  }
-  if (activeSort === SortOption.TopRatedFirst) {
+  } else if (activeSort === SortOption.TopRatedFirst) {
     sortedOffers = [...filteredOffers].sort((a, b) => b.rating - a.rating);
+  }
+
+  if (status === RequestStatus.Loading) {
+    return <Spinner className={'cities__places-container container'}/>;
   }
 
   return (
@@ -55,10 +54,11 @@ export function Cities({selectedCity}: PageMainProps) {
           </div>
         </section>
         <div className="cities__right-section">
+          {showMap &&
           <LeafletMap
             offers={filteredOffers}
             className="cities"
-          />
+          />}
         </div>
       </div>
     </div>

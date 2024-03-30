@@ -1,10 +1,18 @@
 import {store} from '../redux/index';
 import {OfferCard} from './common-types';
 
-type initialState = {
+export const enum RequestStatus {
+  Idle = 'idle',
+  Loading = 'loading',
+  Success = 'success',
+  Failed = 'failed',
+}
+
+interface initialState {
   offers: OfferCard[];
   hoveredCardId?: string | undefined;
-};
+  status: RequestStatus;
+}
 
 type RootState = ReturnType<typeof store.getState>;
 
