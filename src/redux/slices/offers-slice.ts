@@ -1,6 +1,13 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {RequestStatus, initialState} from '../../types/redux-types';
+import {RequestStatus} from '../../types/redux-types';
 import {fetchAllOffers} from '../thunks/offers-thunk';
+import {OfferCard} from '../../types/common-types';
+
+interface initialState {
+  offers: OfferCard[];
+  hoveredCardId?: string | undefined;
+  status: RequestStatus;
+}
 
 const initialState: initialState = {
   offers: [],
@@ -36,9 +43,9 @@ const offersSlice = createSlice({
   },
 });
 
-const offerActions = {...offersSlice.actions, fetchAllOffers};
+const offersActions = {...offersSlice.actions, fetchAllOffers};
 
-const offerSelectors = offersSlice.selectors;
+const offersSelectors = offersSlice.selectors;
 
-export {offerActions, offersSlice, offerSelectors};
+export {offersActions, offersSlice, offersSelectors};
 

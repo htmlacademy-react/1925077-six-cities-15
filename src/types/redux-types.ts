@@ -1,5 +1,4 @@
 import {store} from '../redux/index';
-import {OfferCard} from './common-types';
 
 export const enum RequestStatus {
   Idle = 'idle',
@@ -8,14 +7,8 @@ export const enum RequestStatus {
   Failed = 'failed',
 }
 
-interface initialState {
-  offers: OfferCard[];
-  hoveredCardId?: string | undefined;
-  status: RequestStatus;
-}
-
 type RootState = ReturnType<typeof store.getState>;
 
 type AppDispatch = typeof store.dispatch;
 
-export type {initialState, RootState, AppDispatch};
+export type {RootState, AppDispatch};

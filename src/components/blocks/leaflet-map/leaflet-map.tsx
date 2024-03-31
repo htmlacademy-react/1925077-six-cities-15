@@ -5,7 +5,7 @@ import {DEFAULT_ZOOM, MARKER_CURRENT, MARKER_DEFAULT, MARKER_SIZE} from '../../.
 import {FullOffer} from '../../../types/common-types';
 import {useMap} from '../../../hooks/use-leaflet-map';
 import {useAppSelector} from '../../../hooks/redux-hooks';
-import {offerSelectors} from '../../../redux/slices/offers-slice';
+import {offersSelectors} from '../../../redux/slices/offers-slice';
 
 interface GenericOffer extends Pick<FullOffer, 'city' | 'id' | 'location'> {}
 
@@ -29,7 +29,7 @@ export function LeafletMap({offers, className}: LeafletProps) {
   const location = offers[0].city.location;
   const map = useMap(mapRef, location);
   const points = offers.map((offer) => offer.location);
-  const activePoint = useAppSelector(offerSelectors.activeId);
+  const activePoint = useAppSelector(offersSelectors.activeId);
 
   useEffect(() => {
     if (map) {

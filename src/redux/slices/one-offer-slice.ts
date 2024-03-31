@@ -5,42 +5,48 @@ import {fetchNearestOffers, fetchOneOffer} from '../thunks/offers-thunk';
 
 interface initialState {
   info: FullOffer | null;
-  nearest: OfferCard[];
+  nearests: OfferCard[];
   status: RequestStatus;
 }
 
 const initialState: initialState = {
   info: null,
-  nearest: [],
+  nearests: [],
   status: RequestStatus.Idle,
 };
 
-export const offersSlice = createSlice({
+export const oneOfferSlice = createSlice({
   initialState,
   name: 'oneOffer',
-  reducers: {},
+  reducers: {
+    clear(state) {
+      state.info = null;
+      state.nearests = [];
+    }
+  },
   selectors: {
-    nearestOffers: (state) => state.nearest,
+    nearestOffers: (state) => state.nearests,
     offer: (state) => state.info,
-    offerStatus: (state) => state.status
+    status: (state) => state.status
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchOneOffer.fulfilled, (state, action) => {
-      state.info = action.payload;
-      state.status = RequestStatus.Success;
-    });
-    builder.addCase(fetchOneOffer.rejected, (state) => {
-      state.status = RequestStatus.Failed;
-    });
-    builder.addCase(fetchOneOffer.pending, (state) => {
-      state.status = RequestStatus.Loading;
-    });
-    builder.addCase(fetchNearestOffers.fulfilled, (state, action) => {
-      state.nearest = action.payload;
-    });
+    builder.
+      addCase(fetchOneOffer.fulfilled, (state, action) => {
+        state.info = action.payload;
+        state.status = RequestStatus.Success;
+      }).
+      addCase(fetchOneOffer.rejected, (state) => {
+        state.status = RequestStatus.Failed;
+      }).
+      addCase(fetchOneOffer.pending, (state) => {
+        state.status = RequestStatus.Loading;
+      }).
+      addCase(fetchNearestOffers.fulfilled, (state, action) => {
+        state.nearests = action.payload;
+      });
   }
 });
 
-export const offerActions = {...offersSlice.actions, fetchNearestOffers, fetchOneOffer};
+export const oneOfferActions = {...oneOfferSlice.actions, fetchNearestOffers, fetchOneOffer};
 
-export const offerSelector = offersSlice.selectors;
+export const oneOfferSelectors = oneOfferSlice.selectors;

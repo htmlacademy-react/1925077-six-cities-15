@@ -1,3 +1,13 @@
+.page:has(.spinner-container.page__main) {
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+.page__main.spinner-container {
+  flex-grow: 1;
+}
+
 .spinner-container {
   height: 100%;
   display: flex;
