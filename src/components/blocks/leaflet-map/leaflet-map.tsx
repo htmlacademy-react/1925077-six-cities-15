@@ -2,12 +2,12 @@ import {useEffect, useRef} from 'react';
 import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import {DEFAULT_ZOOM, MARKER_CURRENT, MARKER_DEFAULT, MARKER_SIZE} from '../../../consts/leaflet-map-consts';
-import {FullOffer} from '../../../types/common-types';
+import {FullOffer, OfferCard} from '../../../types/common-types';
 import {useMap} from '../../../hooks/use-leaflet-map';
 import {useAppSelector} from '../../../hooks/redux-hooks';
 import {offersSelectors} from '../../../redux/slices/offers-slice';
 
-interface GenericOffer extends Pick<FullOffer, 'city' | 'id' | 'location'> {}
+interface GenericOffer extends Pick<OfferCard, 'city' | 'id' | 'location'> {}
 
 interface LeafletProps {
   offers: GenericOffer[];

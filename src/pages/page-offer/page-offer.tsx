@@ -2,7 +2,6 @@ import {useParams} from 'react-router-dom';
 import {LeafletMap} from '../../components/blocks/leaflet-map/leaflet-map';
 import {PlaceCard} from '../../components/blocks/place-card/place-card';
 import {useDocumentTitle} from '../../hooks/use-document-title';
-import {NEAR_OFFERS} from '../../mock/near-offers';
 import {REVIEWS} from '../../mock/reviews';
 import {OfferGallery} from '../../components/blocks/offer-gallery/offer-gallery';
 import {OfferInfo} from '../../components/blocks/offer-info/offer-info';
@@ -12,7 +11,7 @@ import {oneOfferSelectors} from '../../redux/slices/one-offer-slice';
 import {FullOffer} from '../../types/common-types';
 import {RequestStatus} from '../../types/redux-types';
 import {Spinner} from '../../components/blocks/spinner/spinner';
-import {useFetchOffer} from '../../hooks/use-fetch-one-offer';
+import {sliceArrayToThreeElements, useFetchOneOffer} from '../../hooks/use-fetch-one-offer';
 
 function PageOffer() {
   useDocumentTitle('6 cities. Offer');
@@ -20,10 +19,12 @@ function PageOffer() {
   const {id} = useParams() as {id: string};
   const status = useAppSelector(oneOfferSelectors.status);
   const offer = useAppSelector(oneOfferSelectors.offer) as FullOffer;
-  const isOffer = !!offer;
-  const isImages = isOffer && offer.images.length > 0;
+  const allNearestOffers = useAppSelector(oneOfferSelectors.nearestOffers);
+  const nearestOffers = sliceArrayToThreeElements(allNearestOffers);
+  const isImages = !!offer && offer.images.length > 0;
+  const isNearOffers = !!nearestOffers && nearestOffers.length > 0;
 
-  useFetchOffer(status, id);
+  useFetchOneOffer(status, id);
 
   if (status === RequestStatus.Loading) {
     return <Spinner main/>;
@@ -44,7 +45,7 @@ function PageOffer() {
           </div>
         </div>
 
-        <LeafletMap className='offer' offers={NEAR_OFFERS}/>
+        {isNearOffers && <LeafletMap className='offer' offers={nearestOffers}/>}
 
       </section>
       <div className="container">
@@ -52,10 +53,10 @@ function PageOffer() {
           <h2 className="near-places__title">Other places in the neighbourhood</h2>
           <div className="near-places__list places__list">
 
-            {NEAR_OFFERS.map((offerMock) => (
+            {isNearOffers && nearestOffers.map((nearOffer) => (
               <PlaceCard
-                key={offerMock.id}
-                {...offerMock}
+                key={nearOffer.id}
+                {...nearOffer}
                 className="near-places"
               />
             ))}
