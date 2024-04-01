@@ -22,6 +22,7 @@ export const oneOfferSlice = createSlice({
     clear(state) {
       state.info = null;
       state.nearests = [];
+      state.status = RequestStatus.Idle;
     }
   },
   selectors: {

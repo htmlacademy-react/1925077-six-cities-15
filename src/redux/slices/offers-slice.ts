@@ -26,7 +26,7 @@ const offersSlice = createSlice({
   selectors: {
     offers: (state) => state.offers,
     activeId: (state) => state.hoveredCardId,
-    offerStatus: (state) => state.status
+    status: (state) => state.status
   },
   extraReducers: (builder) => {
     builder

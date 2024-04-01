@@ -19,7 +19,7 @@ export function Cities({selectedCity}: PageMainProps) {
   const [activeSort, setActiveSort] = useState(SortOption.Popular);
   let sortedOffers = filteredOffers;
   const showMap = filteredOffers.length > 0;
-  const status = useAppSelector(offersSelectors.offerStatus);
+  const status = useAppSelector(offersSelectors.status);
   useFetchOffers(status);
 
   if (activeSort === SortOption.PriceLowToHigh) {

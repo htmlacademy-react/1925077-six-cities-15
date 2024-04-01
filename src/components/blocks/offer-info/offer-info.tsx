@@ -27,7 +27,7 @@ export function OfferInfo({isPremium, rating, title, type, bedrooms, maxAdults, 
 
           <span className="visually-hidden">Rating</span>
         </div>
-        <span className="offer__rating-value rating__value">4.8</span>
+        <span className="offer__rating-value rating__value">{rating}</span>
       </div>
       <ul className="offer__features">
 
