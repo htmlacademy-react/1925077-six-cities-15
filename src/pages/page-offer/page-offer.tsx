@@ -22,7 +22,6 @@ function PageOffer() {
   const offer = useAppSelector(oneOfferSelectors.offer) as FullOffer;
   const isOffer = !!offer;
   const isImages = isOffer && offer.images.length > 0;
-  const images = isOffer ? offer.images : [];
 
   useFetchOffer(status, id);
 
@@ -34,12 +33,12 @@ function PageOffer() {
     <main className="page__main page__main--offer">
       <section className="offer">
 
-        {isImages && <OfferGallery images={images}/>}
+        {isImages && <OfferGallery images={offer.images}/>}
 
         <div className="offer__container container">
           <div className="offer__wrapper">
 
-            <OfferInfo />
+            <OfferInfo {...offer}/>
 
             <Reviews reviews={REVIEWS}/>
           </div>
