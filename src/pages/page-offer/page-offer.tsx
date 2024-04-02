@@ -2,7 +2,6 @@ import {useParams} from 'react-router-dom';
 import {LeafletMap} from '../../components/blocks/leaflet-map/leaflet-map';
 import {PlaceCard} from '../../components/blocks/place-card/place-card';
 import {useDocumentTitle} from '../../hooks/use-document-title';
-// import {REVIEWS} from '../../mock/reviews';
 import {OfferGallery} from '../../components/blocks/offer-gallery/offer-gallery';
 import {OfferInfo} from '../../components/blocks/offer-info/offer-info';
 import {Reviews} from '../../components/blocks/reviews/reviews';
@@ -11,7 +10,8 @@ import {oneOfferSelectors} from '../../redux/slices/one-offer-slice';
 import {FullOffer} from '../../types/common-types';
 import {RequestStatus} from '../../types/redux-types';
 import {Spinner} from '../../components/blocks/spinner/spinner';
-import {sliceArrayToThreeElements, useFetchOneOffer} from '../../hooks/use-fetch-one-offer';
+import {useFetchOneOffer} from '../../hooks/use-fetch-one-offer';
+import {sliceArrayToThreeElements} from '../../utils/slice-array-to-three-elements';
 
 function PageOffer() {
   useDocumentTitle('6 cities. Offer');

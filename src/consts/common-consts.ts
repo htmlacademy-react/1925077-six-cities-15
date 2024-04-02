@@ -18,3 +18,5 @@ export const Endpoint = {
   Logout: '/logout',
   Offers: '/offers',
 } as const;
+
+export const LIMIT_REVIEWS = 10;
