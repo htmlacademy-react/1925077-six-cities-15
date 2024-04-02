@@ -2,7 +2,7 @@ import {useEffect, useRef} from 'react';
 import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import {DEFAULT_ZOOM, MARKER_CURRENT, MARKER_DEFAULT, MARKER_SIZE} from '../../../consts/leaflet-map-consts';
-import {FullOffer, OfferCard} from '../../../types/common-types';
+import {OfferCard} from '../../../types/common-types';
 import {useMap} from '../../../hooks/use-leaflet-map';
 import {useAppSelector} from '../../../hooks/redux-hooks';
 import {offersSelectors} from '../../../redux/slices/offers-slice';

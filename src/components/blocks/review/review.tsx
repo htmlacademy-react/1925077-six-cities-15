@@ -1,6 +1,6 @@
-import {Reviews} from '../../../types/reviews-and-user';
+import {Review as ReviewType} from '../../../types/common-types';
 
-type ReviewProps = Pick<Reviews, 'date' | 'user' | 'comment' | 'rating'>;
+type ReviewProps = Pick<ReviewType, 'date' | 'user' | 'comment' | 'rating'>;
 
 function convertDate(date: string) {
   return new Intl.DateTimeFormat('en-US', {month: 'long', year: 'numeric'}).format(new Date(date));

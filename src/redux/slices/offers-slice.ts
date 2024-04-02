@@ -1,6 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {RequestStatus} from '../../types/redux-types';
-import {fetchAllOffers} from '../thunks/offers-thunk';
+import {fetchAllOffers} from '../thunks/offers-thunks';
 import {OfferCard} from '../../types/common-types';
 
 interface initialState {

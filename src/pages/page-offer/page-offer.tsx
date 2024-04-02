@@ -2,7 +2,7 @@ import {useParams} from 'react-router-dom';
 import {LeafletMap} from '../../components/blocks/leaflet-map/leaflet-map';
 import {PlaceCard} from '../../components/blocks/place-card/place-card';
 import {useDocumentTitle} from '../../hooks/use-document-title';
-import {REVIEWS} from '../../mock/reviews';
+// import {REVIEWS} from '../../mock/reviews';
 import {OfferGallery} from '../../components/blocks/offer-gallery/offer-gallery';
 import {OfferInfo} from '../../components/blocks/offer-info/offer-info';
 import {Reviews} from '../../components/blocks/reviews/reviews';
@@ -41,7 +41,7 @@ function PageOffer() {
 
             <OfferInfo {...offer}/>
 
-            <Reviews reviews={REVIEWS}/>
+            <Reviews id={id}/>
           </div>
         </div>
 
