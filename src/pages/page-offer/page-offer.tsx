@@ -12,6 +12,7 @@ import {RequestStatus} from '../../types/redux-types';
 import {Spinner} from '../../components/blocks/spinner/spinner';
 import {useFetchOneOffer} from '../../hooks/use-fetch-one-offer';
 import {sliceArrayToThreeElements} from '../../utils/slice-array-to-three-elements';
+import {Page404} from '../page-404/page-404';
 
 function PageOffer() {
   useDocumentTitle('6 cities. Offer');
@@ -28,6 +29,10 @@ function PageOffer() {
 
   if (status === RequestStatus.Loading) {
     return <Spinner main/>;
+  }
+
+  if (status === RequestStatus.Failed) {
+    return <Page404 what='Offer'/>;
   }
 
   return (
