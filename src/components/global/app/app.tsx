@@ -1,16 +1,28 @@
 import {Route, Routes, BrowserRouter, Navigate} from 'react-router-dom';
-import {AppRoute, getAuthorizationStatus} from '../../../types/routes';
+import {AppRoute} from '../../../types/routes';
 import {PageMain} from '../../../pages/page-main/page-main';
 import {Page404} from '../../../pages/page-404/page-404';
 import {PageFavorites} from '../../../pages/page-favorites/page-favorites';
 import {PageLogin} from '../../../pages/page-login/page-login';
-import {PrivateRoute} from '../private-route/private-route';
+import {ProtectedRoute} from '../private-route/private-route';
 import {Layout} from '../layout/layout';
 import {PageOffer} from '../../../pages/page-offer/page-offer';
 import {CITIES} from '../../../consts/common-consts';
+// import {useAuth} from '../../../hooks/use-auth';
+import {getToken} from '../../../services/token';
+import {useEffect} from 'react';
+import {checkAuth} from '../../../redux/thunks/auth-thunk';
 
 function App() {
-  const authorizationStatus = getAuthorizationStatus();
+  // const authorizationStatus = useAuth();
+
+  const token = getToken();
+
+  useEffect(() => {
+    if (token) {
+      checkAuth();
+    }
+  });
 
   return (
     <BrowserRouter>
@@ -30,17 +42,17 @@ function App() {
           <Route
             path={AppRoute.Favorites}
             element={
-              <PrivateRoute authorizationStatus={authorizationStatus}>
+              <ProtectedRoute>
                 <PageFavorites />
-              </PrivateRoute>
+              </ProtectedRoute>
             }
           />
           <Route
             path={AppRoute.Login}
             element={
-              <PrivateRoute authorizationStatus={authorizationStatus} isReverse>
+              <ProtectedRoute onlyAuth>
                 <PageLogin />
-              </PrivateRoute>
+              </ProtectedRoute>
             }
           />
           <Route

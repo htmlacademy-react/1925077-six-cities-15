@@ -14,9 +14,5 @@ export enum AuthorizationStatus {
 }
 
 export type AppRouteProps = {
-  authorizationStatus: AuthorizationStatus;
   children: JSX.Element;
-  isReverse?: boolean;
 }
-
-export const getAuthorizationStatus = () => AuthorizationStatus.Auth;
