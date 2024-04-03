@@ -14,9 +14,9 @@ const fetchOneOffer = createAsyncThunk<FullOffer, string, {extra: AxiosInstance}
   return response.data;
 });
 
-const fetchNearestOffers = createAsyncThunk<OfferCard[], string, {extra: AxiosInstance}>('fetchOffers/nearest', async (id, {extra: api}) => {
+const fetchNearByOffers = createAsyncThunk<OfferCard[], string, {extra: AxiosInstance}>('fetchOffers/nearby', async (id, {extra: api}) => {
   const response = await api.get<OfferCard[]>(`${Endpoint.Offers}/${id}/nearby`);
   return response.data;
 });
 
-export {fetchAllOffers, fetchOneOffer, fetchNearestOffers};
+export {fetchAllOffers, fetchOneOffer, fetchNearByOffers};

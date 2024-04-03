@@ -1,9 +1,9 @@
-import {Reviews} from '../../../types/reviews-and-user';
+import {Review as ReviewType} from '../../../types/common-types';
 
-type ReviewProps = Pick<Reviews, 'date' | 'user' | 'comment' | 'rating'>;
+type ReviewProps = Pick<ReviewType, 'date' | 'user' | 'comment' | 'rating'>;
 
 function convertDate(date: string) {
-  return new Intl.DateTimeFormat('en-US', {month: 'long', year: 'numeric'}).format(new Date(date));
+  return new Intl.DateTimeFormat('en-US', {day: 'numeric', month: 'long', year: 'numeric'}).format(new Date(date));
 }
 
 export function Review({date, user, comment, rating}: ReviewProps) {
@@ -16,7 +16,7 @@ export function Review({date, user, comment, rating}: ReviewProps) {
         <div className="reviews__avatar-wrapper user__avatar-wrapper">
           <img
             className="reviews__avatar user__avatar"
-            src="img/avatar-max.jpg"
+            src={user.avatarUrl}
             width={54}
             height={54}
             alt="Reviews avatar"

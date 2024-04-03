@@ -42,7 +42,7 @@ export interface Host {
 }
 
 export interface OfferCard extends Omit<FullOffer, 'description' | 'bedrooms' | 'goods' | 'host' | 'images' | 'maxAdults'> {
-  previewImage: string;
+  previewImage?: string;
   onMouseEnter?: (id: string) => void;
   onMouseLeave?: () => void;
 }
@@ -70,4 +70,6 @@ export interface User {
   name: string;
   avatarUrl: string;
   isPro: boolean;
+  email: string;
+  token: string;
 }

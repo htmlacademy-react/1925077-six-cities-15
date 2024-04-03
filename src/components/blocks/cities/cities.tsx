@@ -3,7 +3,7 @@ import {PlaceCard} from '../place-card/place-card';
 import {PlacesSorting} from '../places-sorting/places-sorting';
 import {LeafletMap} from '../leaflet-map/leaflet-map';
 import {useActionCreators, useAppSelector} from '../../../hooks/redux-hooks';
-import {offerActions, offerSelectors} from '../../../redux/slices/offers-slice';
+import {offersActions, offersSelectors} from '../../../redux/slices/offers-slice';
 import {SortOption} from '../../../types/common-types';
 import {useState} from 'react';
 import {RequestStatus} from '../../../types/redux-types';
@@ -12,14 +12,14 @@ import {useFilterOffers} from '../../../hooks/use-filter-offers';
 import {useFetchOffers} from '../../../hooks/use-fetch-offers';
 
 export function Cities({selectedCity}: PageMainProps) {
-  const offers = useAppSelector(offerSelectors.offers);
-  const {setHoveredCardId} = useActionCreators(offerActions);
+  const offers = useAppSelector(offersSelectors.offers);
+  const {setHoveredCardId} = useActionCreators(offersActions);
   const filteredOffers = useFilterOffers(offers, selectedCity);
   const handleMouseEnter = (id: string) => setHoveredCardId(id);
   const [activeSort, setActiveSort] = useState(SortOption.Popular);
   let sortedOffers = filteredOffers;
   const showMap = filteredOffers.length > 0;
-  const status = useAppSelector(offerSelectors.offerStatus);
+  const status = useAppSelector(offersSelectors.status);
   useFetchOffers(status);
 
   if (activeSort === SortOption.PriceLowToHigh) {

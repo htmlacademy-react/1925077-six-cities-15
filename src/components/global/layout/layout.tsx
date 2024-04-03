@@ -1,52 +1,19 @@
-import {Outlet, useLocation} from 'react-router-dom';
+import {Link, Outlet, useLocation} from 'react-router-dom';
 import {Logo} from './header-logo/header-logo';
-import {AppRoute, AuthorizationStatus, getAuthorizationStatus} from '../../../types/routes';
+import {AppRoute} from '../../../types/routes';
 import {useDocumentTitle} from '../../../hooks/use-document-title';
 import {CITIES} from '../../../consts/common-consts';
-
-const getLayoutStyle = (pathname: AppRoute) => {
-  let rootClassName = '';
-  let isActiveLogo = false;
-  let isNav = true;
-  let isFooter = false;
-  let title = '6 cities';
-
-  switch (pathname) {
-    case AppRoute.Main:
-      rootClassName = 'page--gray page--main';
-      isActiveLogo = true;
-      title = '6 cities';
-      break;
-    case AppRoute.FavoritesEmpty:
-      rootClassName = 'page--favorites-empty';
-      isFooter = true;
-      title += '. Favorites';
-      break;
-    case AppRoute.Login:
-      rootClassName = 'page--gray page--login';
-      isNav = false;
-      title += '. Login';
-      break;
-    case AppRoute.Favorites:
-      isFooter = true;
-      title += '. Favorites';
-      break;
-    default:
-  }
-  return {
-    rootClassName,
-    isActiveLogo,
-    isNav,
-    isFooter,
-    title
-  };
-};
+import {useAuth} from '../../../hooks/use-auth';
+import {useCallback} from 'react';
+import {useActionCreators, useAppSelector} from '../../../hooks/redux-hooks';
+import {userActions, userSelectors} from '../../../redux/slices/user-slice';
+import {getLayoutStyle} from '../../../utils/get-layout-style';
 
 const citiesRoutes = new Set(CITIES.map((city) => `/${city.name}`));
 
 export function Layout() {
   const {pathname} = useLocation();
-  const authorizationStatus = getAuthorizationStatus();
+  const authorizationStatus = useAuth();
   const pathName = pathname as AppRoute;
   const isOnMain = citiesRoutes.has(pathName) || pathName === AppRoute.Main;
   const {isNav, isFooter} = getLayoutStyle(pathname as AppRoute);
@@ -59,6 +26,12 @@ export function Layout() {
   }
 
   useDocumentTitle(title);
+
+  const user = useAppSelector(userSelectors.info);
+  const {logout} = useActionCreators(userActions);
+  const handleLogout = useCallback(() => {
+    logout();
+  }, [logout]);
 
   return (
     <div className={`page ${rootClassName}`}>
@@ -79,23 +52,26 @@ export function Layout() {
               <nav className="header__nav">
                 <ul className="header__nav-list">
                   <li className="header__nav-item user">
-                    <a className="header__nav-link header__nav-link--profile" href="#">
+                    <Link className="header__nav-link header__nav-link--profile" to={AppRoute.Login}>
                       <div className="header__avatar-wrapper user__avatar-wrapper">
                       </div>
-                      {authorizationStatus === AuthorizationStatus.Auth ? (
+                      {authorizationStatus ? (
                         <>
-                          <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
+                          <span className="header__user-name user__name">{user?.email}</span>
                           <span className="header__favorite-count">0</span>
                         </>)
                         : <span className="header__login">Sign in</span>}
-                    </a>
+                    </Link>
                   </li>
 
-                  {(authorizationStatus === AuthorizationStatus.Auth) && (
+                  {authorizationStatus && (
                     <li className="header__nav-item">
-                      <a className="header__nav-link" href="#">
+                      <Link className="header__nav-link"
+                        to={pathName}
+                        onClick={handleLogout}
+                      >
                         <span className="header__signout">Sign out</span>
-                      </a>
+                      </Link>
                     </li>
                   )}
                 </ul>

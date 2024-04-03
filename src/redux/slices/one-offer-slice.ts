@@ -1,28 +1,34 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {FullOffer, OfferCard} from '../../types/common-types';
 import {RequestStatus} from '../../types/redux-types';
-import {fetchNearestOffers, fetchOneOffer} from '../thunks/offers-thunk';
+import {fetchNearByOffers, fetchOneOffer} from '../thunks/offers-thunks';
 
 interface initialState {
   info: FullOffer | null;
-  nearest: OfferCard[];
+  nearBy: OfferCard[];
   status: RequestStatus;
 }
 
 const initialState: initialState = {
   info: null,
-  nearest: [],
+  nearBy: [],
   status: RequestStatus.Idle,
 };
 
-export const offersSlice = createSlice({
+export const oneOfferSlice = createSlice({
   initialState,
   name: 'oneOffer',
-  reducers: {},
+  reducers: {
+    clear(state) {
+      state.info = null;
+      state.nearBy = [];
+      state.status = RequestStatus.Idle;
+    }
+  },
   selectors: {
-    nearestOffers: (state) => state.nearest,
+    nearbyOffers: (state) => state.nearBy,
     offer: (state) => state.info,
-    offerStatus: (state) => state.status
+    status: (state) => state.status,
   },
   extraReducers: (builder) => {
     builder.addCase(fetchOneOffer.fulfilled, (state, action) => {
@@ -35,12 +41,13 @@ export const offersSlice = createSlice({
     builder.addCase(fetchOneOffer.pending, (state) => {
       state.status = RequestStatus.Loading;
     });
-    builder.addCase(fetchNearestOffers.fulfilled, (state, action) => {
-      state.nearest = action.payload;
+
+    builder.addCase(fetchNearByOffers.fulfilled, (state, action) => {
+      state.nearBy = action.payload;
     });
   }
 });
 
-export const offerActions = {...offersSlice.actions, fetchNearestOffers, fetchOneOffer};
+export const oneOfferActions = {...oneOfferSlice.actions, fetchNearByOffers, fetchOneOffer};
 
-export const offerSelector = offersSlice.selectors;
+export const oneOfferSelectors = oneOfferSlice.selectors;
