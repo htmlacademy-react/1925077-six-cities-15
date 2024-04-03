@@ -1,17 +1,17 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {FullOffer, OfferCard} from '../../types/common-types';
 import {RequestStatus} from '../../types/redux-types';
-import {fetchNearestOffers, fetchOneOffer} from '../thunks/offers-thunks';
+import {fetchNearByOffers, fetchOneOffer} from '../thunks/offers-thunks';
 
 interface initialState {
   info: FullOffer | null;
-  nearests: OfferCard[];
+  nearBy: OfferCard[];
   status: RequestStatus;
 }
 
 const initialState: initialState = {
   info: null,
-  nearests: [],
+  nearBy: [],
   status: RequestStatus.Idle,
 };
 
@@ -21,12 +21,12 @@ export const oneOfferSlice = createSlice({
   reducers: {
     clear(state) {
       state.info = null;
-      state.nearests = [];
+      state.nearBy = [];
       state.status = RequestStatus.Idle;
     }
   },
   selectors: {
-    nearestOffers: (state) => state.nearests,
+    nearbyOffers: (state) => state.nearBy,
     offer: (state) => state.info,
     status: (state) => state.status,
   },
@@ -42,12 +42,12 @@ export const oneOfferSlice = createSlice({
       state.status = RequestStatus.Loading;
     });
 
-    builder.addCase(fetchNearestOffers.fulfilled, (state, action) => {
-      state.nearests = action.payload;
+    builder.addCase(fetchNearByOffers.fulfilled, (state, action) => {
+      state.nearBy = action.payload;
     });
   }
 });
 
-export const oneOfferActions = {...oneOfferSlice.actions, fetchNearestOffers, fetchOneOffer};
+export const oneOfferActions = {...oneOfferSlice.actions, fetchNearByOffers, fetchOneOffer};
 
 export const oneOfferSelectors = oneOfferSlice.selectors;

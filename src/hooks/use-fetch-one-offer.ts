@@ -4,13 +4,13 @@ import {RequestStatus} from '../types/redux-types';
 import {useActionCreators} from './redux-hooks';
 
 export function useFetchOneOffer(status: RequestStatus, id: string) {
-  const {fetchOneOffer, fetchNearestOffers, clear} = useActionCreators(oneOfferActions);
+  const {fetchOneOffer, fetchNearByOffers, clear} = useActionCreators(oneOfferActions);
 
   useEffect(() => {
     if (status === RequestStatus.Idle) {
-      Promise.all([fetchOneOffer(id), fetchNearestOffers(id)]);
+      Promise.all([fetchOneOffer(id), fetchNearByOffers(id)]);
     }
-  }, [id, status, fetchOneOffer, fetchNearestOffers]);
+  }, [id, status, fetchOneOffer, fetchNearByOffers]);
 
   useEffect(() => () => {
     clear();

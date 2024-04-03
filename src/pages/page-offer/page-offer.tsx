@@ -20,10 +20,10 @@ function PageOffer() {
   const {id} = useParams() as {id: string};
   const status = useAppSelector(oneOfferSelectors.status);
   const offer = useAppSelector(oneOfferSelectors.offer) as FullOffer;
-  const allNearestOffers = useAppSelector(oneOfferSelectors.nearestOffers);
-  const nearestOffers = sliceArrayToThreeElements(allNearestOffers);
+  const allNearbyOffers = useAppSelector(oneOfferSelectors.nearbyOffers);
+  const nearbyOffers = sliceArrayToThreeElements(allNearbyOffers);
   const isImages = !!offer && offer.images.length > 0;
-  const isNearOffers = !!nearestOffers && nearestOffers.length > 0;
+  const isNearOffers = !!nearbyOffers && nearbyOffers.length > 0;
 
   useFetchOneOffer(status, id);
 
@@ -50,7 +50,7 @@ function PageOffer() {
           </div>
         </div>
 
-        {isNearOffers && <LeafletMap className='offer' offers={nearestOffers}/>}
+        {isNearOffers && <LeafletMap className='offer' offers={nearbyOffers}/>}
 
       </section>
       <div className="container">
@@ -58,7 +58,7 @@ function PageOffer() {
           <h2 className="near-places__title">Other places in the neighbourhood</h2>
           <div className="near-places__list places__list">
 
-            {isNearOffers && nearestOffers.map((nearOffer) => (
+            {isNearOffers && nearbyOffers.map((nearOffer) => (
               <PlaceCard
                 key={nearOffer.id}
                 {...nearOffer}
