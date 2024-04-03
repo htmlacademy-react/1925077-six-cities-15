@@ -2,7 +2,7 @@ import {useEffect, useRef} from 'react';
 import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import {DEFAULT_ZOOM, MARKER_CURRENT, MARKER_DEFAULT, MARKER_SIZE} from '../../../consts/leaflet-map-consts';
-import {OfferCard} from '../../../types/common-types';
+import {FullOffer, OfferCard} from '../../../types/common-types';
 import {useMap} from '../../../hooks/use-leaflet-map';
 import {useAppSelector} from '../../../hooks/redux-hooks';
 import {offersSelectors} from '../../../redux/slices/offers-slice';
@@ -12,6 +12,7 @@ interface GenericOffer extends Pick<OfferCard, 'city' | 'id' | 'location'> {}
 interface LeafletProps {
   offers: GenericOffer[];
   className?: string;
+  oneOffer?: FullOffer;
 }
 
 const defaultCustomIcon = leaflet.icon({
@@ -24,7 +25,7 @@ const currentCustomIcon = leaflet.icon({
   ...MARKER_SIZE,
 });
 
-export function LeafletMap({offers, className}: LeafletProps) {
+export function LeafletMap({offers, className, oneOffer}: LeafletProps) {
   const mapRef = useRef(null);
   const location = offers[0].city.location;
   const map = useMap(mapRef, location);
@@ -50,8 +51,19 @@ export function LeafletMap({offers, className}: LeafletProps) {
           })
           .addTo(map);
       });
+
+      if (oneOffer) {
+        leaflet
+          .marker({
+            lat: oneOffer.location.latitude,
+            lng: oneOffer.location.longitude,
+          }, {
+            icon: currentCustomIcon,
+          })
+          .addTo(map);
+      }
     }
-  }, [map, points, activePoint, offers]);
+  }, [map, points, activePoint, offers, oneOffer]);
 
   useEffect(() => {
     if (map && location) {

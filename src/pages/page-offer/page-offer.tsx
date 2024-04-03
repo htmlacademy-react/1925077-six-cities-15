@@ -50,7 +50,7 @@ function PageOffer() {
           </div>
         </div>
 
-        {isNearOffers && <LeafletMap className='offer' offers={nearbyOffers}/>}
+        {isNearOffers && <LeafletMap className='offer' offers={nearbyOffers} oneOffer={offer}/>}
 
       </section>
       <div className="container">
